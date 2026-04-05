@@ -151,7 +151,7 @@ def parse_picks(raw, stocks):
         base = ticker_map.get(pick.get("ticker",""), {**empty, "ticker": pick.get("ticker","?")})
         result.append({**base, **pick})
     result = [s for s in result if int(s.get("conviction",0)) >= 7]
-    return result[:TOP_N]
+    return result
 
 
 def analyze_claude(stocks):
@@ -177,28 +177,76 @@ def analyze_gemini(stocks):
         print("  GEMINI_API_KEY not set")
         return []
     genai.configure(api_key=GEMINI_KEY)
-    model = genai.GenerativeModel("gemini-1.5-pro")
-    print(f"  Sending {len(stocks)} stocks to Gemini...")
+    model = genai.GenerativeModel("gemini-2.5-flash")
+    # send only top 10 to stay within free tier limits
+    subset = stocks[:50]
+    print(f"  Sending top {len(subset)} stocks to Gemini...")
     t0 = time.time()
-    response = model.generate_content(build_prompt(stocks))
+    response = model.generate_content(build_prompt(subset))
     print(f"  Gemini done in {time.time()-t0:.1f}s")
     result = parse_picks(response.text, stocks)
     print(f"  Gemini picks (>=7): {len(result)}")
     return result
 
 
-def build_cards(top):
-    if not top:
-        return "<div style='padding:60px;text-align:center;color:#6b7280;font-size:14px'>No stocks passed conviction filter for this model.</div>"
+def merge_picks(claude_picks, gemini_picks, all_stocks):
+    """
+    Merge Claude and Gemini picks into one deduplicated list.
+    Each entry gets a 'models' field: 'claude', 'gemini', or 'both'.
+    Stocks picked by both get highest priority and use Claude's analysis
+    with Gemini conviction noted.
+    """
+    claude_map = {s["ticker"]: s for s in claude_picks}
+    gemini_map = {s["ticker"]: s for s in gemini_picks}
+    all_tickers_ordered = []
+    seen = set()
+
+    # both first (highest conviction)
+    for t in claude_map:
+        if t in gemini_map and t not in seen:
+            all_tickers_ordered.append(t)
+            seen.add(t)
+
+    # claude only
+    for t in claude_map:
+        if t not in seen:
+            all_tickers_ordered.append(t)
+            seen.add(t)
+
+    # gemini only
+    for t in gemini_map:
+        if t not in seen:
+            all_tickers_ordered.append(t)
+            seen.add(t)
+
+    merged = []
+    for i, ticker in enumerate(all_tickers_ordered, 1):
+        if ticker in claude_map and ticker in gemini_map:
+            entry = {**claude_map[ticker], "models": "both", "rank": i}
+            entry["gemini_conviction"] = gemini_map[ticker].get("conviction", 0)
+        elif ticker in claude_map:
+            entry = {**claude_map[ticker], "models": "claude", "rank": i}
+        else:
+            entry = {**gemini_map[ticker], "models": "gemini", "rank": i}
+        merged.append(entry)
+
+    return merged
+
+
+def build_cards(merged):
+    if not merged:
+        return "<div style='padding:60px;text-align:center;color:#6b7280;font-size:14px'>No stocks passed the conviction filter.</div>"
+
     RULES  = ["sma50_150","sma150_200","span52","rs_rule","liquidity","above52h",
               "prevclose","sma200slope","inst_rule","abovesma50","sales_rule","eps_rule"]
     LABELS = ["SMA50>150","SMA150>200","52wkSpan","RS","Liquidity","Near52wH",
               "PrevClose","SMA200up","InstOwn",">SMA50","Sales","EPS"]
+
     vc = {"STRONG BUY":"#16a34a","BUY":"#2563eb","SPECULATIVE BUY":"#d97706","N/A":"#6b7280"}
-    def pc(v):
-        return "#16a34a" if v > 0 else "#dc2626" if v < 0 else "#6b7280"
+    def pc(v): return "#16a34a" if v>0 else "#dc2626" if v<0 else "#6b7280"
+
     cards = ""
-    for s in top:
+    for s in merged:
         col   = vc.get(s.get("verdict","N/A"),"#6b7280")
         conv  = int(s.get("conviction",0))
         up    = s.get("price_target_pct",0)
@@ -216,19 +264,33 @@ def build_cards(top):
         ph    = round(price/h52*100) if h52 else 0
         np_   = round(n/8190*100)
         cc    = "#16a34a" if conv>=8 else "#2563eb" if conv>=7 else "#d97706"
+        models = s.get("models","claude")
+
+        # model badge
+        if models == "both":
+            gc = s.get("gemini_conviction",0)
+            badge = f'<span class="mbadge mboth">&#9733; Claude + Gemini &nbsp;<span style="opacity:.7;font-size:9px">Claude:{conv}/10 · Gemini:{gc}/10</span></span>'
+        elif models == "gemini":
+            badge = '<span class="mbadge mgemini">&#9670; Gemini pick</span>'
+        else:
+            badge = '<span class="mbadge mclaude">&#9632; Claude pick</span>'
+
         pills = ""
         for r, lb in zip(RULES, LABELS):
             cls = "pill-pass" if s.get(r) else "pill-fail"
             pills += f'<span class="{cls}">{lb}</span>'
-        verdict   = s.get("verdict","N/A")
-        ticker    = s.get("ticker","?")
-        rank      = s.get("rank","?")
-        theme     = s.get("theme","")
-        bull      = s.get("bull_case","")
-        risk      = s.get("key_risk","")
-        catalyst  = s.get("catalyst","")
+
+        verdict  = s.get("verdict","N/A")
+        ticker   = s.get("ticker","?")
+        rank     = s.get("rank","?")
+        theme    = s.get("theme","")
+        bull     = s.get("bull_case","")
+        risk     = s.get("key_risk","")
+        catalyst = s.get("catalyst","")
+
         cards += f"""
-<div class="card" data-verdict="{verdict}">
+<div class="card" data-verdict="{verdict}" data-models="{models}">
+  <div class="model-badge-row">{badge}</div>
   <div class="ch">
     <div class="cl">
       <div class="rn">#{rank}</div>
@@ -265,35 +327,28 @@ def build_cards(top):
     <span class="convnum">{conv}/10</span>
   </div>
 </div>"""
+
     return cards
 
 
-def stats(top):
-    if not top:
-        return 0, 0, 0, 0
-    return (
-        len(top),
-        sum(s.get("nval",0) for s in top) // len(top),
-        sum(s.get("epsPct",0) for s in top) // len(top),
-        sum(s.get("price_target_pct",0) for s in top) // len(top)
-    )
+def build_dashboard(merged, total, timestamp):
+    if not merged:
+        return "<html><body><h1>No picks.</h1></body></html>"
 
+    both_picks  = [s for s in merged if s.get("models") == "both"]
+    claude_only = [s for s in merged if s.get("models") == "claude"]
+    gemini_only = [s for s in merged if s.get("models") == "gemini"]
 
-def build_dashboard(claude_top, gemini_top, total, timestamp):
-    cc, can, caep, caup = stats(claude_top)
-    gc, gan, gaep, gaup = stats(gemini_top)
-    ct   = {s["ticker"] for s in claude_top}
-    gt   = {s["ticker"] for s in gemini_top}
-    both = ct & gt
-    if both:
-        both_html = " ".join(
-            f'<span style="background:#fef3c7;color:#92400e;border:1px solid #fcd34d;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600;font-family:monospace">{t}</span>'
-            for t in sorted(both)
-        )
-    else:
-        both_html = '<span style="color:#9ca3af;font-size:13px">No overlap between models yet</span>'
-    cc_cards = build_cards(claude_top)
-    gc_cards = build_cards(gemini_top)
+    both_chips = " ".join(
+        f'<span style="background:#fef3c7;color:#92400e;border:1px solid #fcd34d;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;font-family:monospace">{s["ticker"]}</span>'
+        for s in both_picks
+    ) if both_picks else '<span style="color:#9ca3af;font-size:13px">No overlap yet — models picked different stocks</span>'
+
+    avg_n   = sum(s.get("nval",0) for s in merged) // len(merged)
+    avg_ep  = sum(s.get("epsPct",0) for s in merged) // len(merged)
+    avg_up  = sum(s.get("price_target_pct",0) for s in merged) // len(merged)
+    cards   = build_cards(merged)
+
     css = """
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#f0f2f5;color:#111827;font-family:Inter,sans-serif}
@@ -305,14 +360,8 @@ body{background:#f0f2f5;color:#111827;font-family:Inter,sans-serif}
 .hm{font-size:12px;color:#6b7280;text-align:right;line-height:1.8}.hm strong{color:#111827}
 .ld{display:inline-block;width:7px;height:7px;background:#16a34a;border-radius:50%;margin-right:5px;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-.both-box{margin:16px 32px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:14px 20px;display:flex;align-items:center;gap:12px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
-.both-label{font-size:12px;font-weight:600;color:#374151;white-space:nowrap}
-.tabs{display:flex;padding:0 32px;border-bottom:2px solid #e5e7eb}
-.tab{padding:12px 28px;font-size:14px;font-weight:600;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;color:#6b7280;transition:all .15s;display:flex;align-items:center;gap:8px}
-.tab:hover{color:#111827}.tab.on{color:#2563eb;border-bottom-color:#2563eb}
-.badge{font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#f3f4f6;color:#6b7280}
-.tab.on .badge{background:#dbeafe;color:#1d4ed8}
-.tab-content{display:none}.tab-content.on{display:block}
+.both-box{margin:16px 32px;background:#fffbeb;border:1px solid #fcd34d;border-radius:12px;padding:14px 20px;display:flex;align-items:center;gap:12px}
+.both-label{font-size:12px;font-weight:700;color:#92400e;white-space:nowrap}
 .sum{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:20px 32px}
 .sc{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:16px 20px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
 .sv{font-family:monospace;font-size:24px;font-weight:700;margin-bottom:4px}
@@ -325,6 +374,11 @@ body{background:#f0f2f5;color:#111827;font-family:Inter,sans-serif}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(560px,1fr));gap:16px;padding:0 32px 40px}
 .card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.05);transition:box-shadow .2s,border-color .2s}
 .card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08);border-color:#d1d5db}
+.model-badge-row{margin-bottom:12px}
+.mbadge{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:20px;font-size:11px;font-weight:600;font-family:monospace}
+.mboth{background:#fef3c7;color:#92400e;border:1px solid #fcd34d}
+.mclaude{background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe}
+.mgemini{background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0}
 .ch{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px}
 .cl{display:flex;align-items:center;gap:12px}
 .rn{font-family:monospace;font-size:13px;font-weight:600;color:#9ca3af;background:#f9fafb;border:1px solid #e5e7eb;border-radius:6px;padding:3px 8px}
@@ -356,8 +410,9 @@ body{background:#f0f2f5;color:#111827;font-family:Inter,sans-serif}
 .convnum{font-family:monospace;font-size:12px;color:#374151;font-weight:600}
 .foot{padding:20px 32px;text-align:center;font-size:11px;color:#9ca3af;border-top:1px solid #e5e7eb;background:#fff;margin-top:8px}
 .foot a{color:#2563eb;text-decoration:none;font-weight:500}
-@media(max-width:640px){.grid{grid-template-columns:1fr;padding:0 16px 28px}.mg{grid-template-columns:repeat(3,1fr)}.sum{grid-template-columns:repeat(2,1fr);padding:16px}.header,.toolbar,.tabs,.both-box{padding-left:16px;padding-right:16px}}
+@media(max-width:640px){.grid{grid-template-columns:1fr;padding:0 16px 28px}.mg{grid-template-columns:repeat(3,1fr)}.sum{grid-template-columns:repeat(2,1fr);padding:16px}.header,.toolbar,.both-box{padding-left:16px;padding-right:16px}}
 """
+
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -370,66 +425,45 @@ body{background:#f0f2f5;color:#111827;font-family:Inter,sans-serif}
 <body>
 <header class="header">
   <div class="lw"><div class="lm">CS</div><div class="lt">CAN<span>SLIM</span> AI Screener</div></div>
-  <div class="hm"><span class="ld"></span>Claude + Gemini &middot; canslimscreener.com<br><strong>{total}</strong> stocks screened &middot; {timestamp}</div>
+  <div class="hm"><span class="ld"></span>Claude + Gemini · canslimscreener.com<br><strong>{total}</strong> stocks screened · {timestamp}</div>
 </header>
 <div class="both-box">
-  <span style="font-size:18px">&#11088;</span>
+  <span style="font-size:20px">&#11088;</span>
   <span class="both-label">Both AIs agree on:</span>
-  {both_html}
+  {both_chips}
 </div>
-<div class="tabs">
-  <div class="tab on" onclick="switchTab('claude',this)">Claude <span class="badge">{cc} picks</span></div>
-  <div class="tab" onclick="switchTab('gemini',this)">Gemini <span class="badge">{gc} picks</span></div>
+<div class="sum">
+  <div class="sc"><div class="sv" style="color:#2563eb">{len(merged)}</div><div class="sl">Unique picks</div><div class="ss">{len(both_picks)} agreed by both</div></div>
+  <div class="sc"><div class="sv" style="color:#d97706">{avg_n:,}</div><div class="sl">Avg N-Value</div><div class="ss">max 8,190</div></div>
+  <div class="sc"><div class="sv" style="color:#16a34a">{avg_ep:+}%</div><div class="sl">Avg EPS Growth</div><div class="ss">quarterly YoY</div></div>
+  <div class="sc"><div class="sv" style="color:#7c3aed">{avg_up:+}%</div><div class="sl">Avg AI Upside</div><div class="ss">1-2 year target</div></div>
 </div>
-<div id="tab-claude" class="tab-content on">
-  <div class="sum">
-    <div class="sc"><div class="sv" style="color:#2563eb">{cc}</div><div class="sl">Claude Picks</div><div class="ss">conviction &ge; 7/10</div></div>
-    <div class="sc"><div class="sv" style="color:#d97706">{can:,}</div><div class="sl">Avg N-Value</div><div class="ss">max 8190</div></div>
-    <div class="sc"><div class="sv" style="color:#16a34a">{caep:+}%</div><div class="sl">Avg EPS Growth</div><div class="ss">quarterly YoY</div></div>
-    <div class="sc"><div class="sv" style="color:#7c3aed">{caup:+}%</div><div class="sl">Avg AI Upside</div><div class="ss">1-2 year target</div></div>
-  </div>
-  <div class="toolbar">
-    <span class="tbl">Filter:</span>
-    <button class="fb on" onclick="fc('claude','all',this)">All</button>
-    <button class="fb" onclick="fc('claude','STRONG BUY',this)">Strong Buy</button>
-    <button class="fb" onclick="fc('claude','BUY',this)">Buy</button>
-    <button class="fb" onclick="fc('claude','SPECULATIVE BUY',this)">Speculative</button>
-  </div>
-  <div class="grid" id="grid-claude">{cc_cards}</div>
+<div class="toolbar">
+  <span class="tbl">Filter:</span>
+  <button class="fb on" onclick="f('all',this)">All picks</button>
+  <button class="fb" onclick="f('both',this)">Both AIs &#11088;</button>
+  <button class="fb" onclick="f('claude',this)">Claude only</button>
+  <button class="fb" onclick="f('gemini',this)">Gemini only</button>
+  <button class="fb" onclick="fv('STRONG BUY',this)">Strong Buy</button>
 </div>
-<div id="tab-gemini" class="tab-content">
-  <div class="sum">
-    <div class="sc"><div class="sv" style="color:#16a34a">{gc}</div><div class="sl">Gemini Picks</div><div class="ss">conviction &ge; 7/10</div></div>
-    <div class="sc"><div class="sv" style="color:#d97706">{gan:,}</div><div class="sl">Avg N-Value</div><div class="ss">max 8190</div></div>
-    <div class="sc"><div class="sv" style="color:#16a34a">{gaep:+}%</div><div class="sl">Avg EPS Growth</div><div class="ss">quarterly YoY</div></div>
-    <div class="sc"><div class="sv" style="color:#7c3aed">{gaup:+}%</div><div class="sl">Avg AI Upside</div><div class="ss">1-2 year target</div></div>
-  </div>
-  <div class="toolbar">
-    <span class="tbl">Filter:</span>
-    <button class="fb on" onclick="fc('gemini','all',this)">All</button>
-    <button class="fb" onclick="fc('gemini','STRONG BUY',this)">Strong Buy</button>
-    <button class="fb" onclick="fc('gemini','BUY',this)">Buy</button>
-    <button class="fb" onclick="fc('gemini','SPECULATIVE BUY',this)">Speculative</button>
-  </div>
-  <div class="grid" id="grid-gemini">{gc_cards}</div>
-</div>
+<div class="grid" id="grid">{cards}</div>
 <div class="foot">
   Data: <a href="http://www.canslimscreener.com/" target="_blank">canslimscreener.com</a>
-  &middot; Claude claude-sonnet-4-20250514 &middot; Gemini 1.5 Pro &middot; Not financial advice.
+  &middot; Claude claude-sonnet-4-20250514 &middot; Gemini 3 Pro &middot; Not financial advice.
 </div>
 <script>
-function switchTab(n,el){{
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
-  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('on'));
-  el.classList.add('on');
-  document.getElementById('tab-'+n).classList.add('on');
-}}
-function fc(tab,v,btn){{
-  const g=document.getElementById('grid-'+tab);
-  g.closest('.tab-content').querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));
+function f(m,btn){{
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));
   btn.classList.add('on');
-  g.querySelectorAll('.card').forEach(c=>{{
-    c.style.display=v==='all'||c.dataset.verdict===v?'':'none';
+  document.querySelectorAll('.card').forEach(c=>{{
+    c.style.display=m==='all'||c.dataset.models===m?'':'none';
+  }});
+}}
+function fv(v,btn){{
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.card').forEach(c=>{{
+    c.style.display=c.dataset.verdict===v?'':'none';
   }});
 }}
 </script>
@@ -445,24 +479,29 @@ async def main():
         print("No stocks found.")
         sys.exit(1)
     print(f"Got {len(stocks)} stocks. Top 5: {', '.join(s['ticker'] for s in stocks[:5])}")
+
     print("\nStep 2/3 - AI analysis...")
     print("  [Claude]")
     claude_top = analyze_claude(stocks)
-    print("  [Gemini]")
+    print("  [Gemini] (top 10 stocks only - free tier limit)")
     gemini_top = analyze_gemini(stocks)
-    both = {s["ticker"] for s in claude_top} & {s["ticker"] for s in gemini_top}
+
+    merged = merge_picks(claude_top, gemini_top, stocks)
+    both   = [s for s in merged if s.get("models") == "both"]
     if both:
-        print(f"  Both agree: {sorted(both)}")
+        print(f"\n  Both AIs agree: {[s['ticker'] for s in both]}")
+
     print("\nStep 3/3 - Building dashboard...")
     ts = datetime.now().strftime("%B %d, %Y  %H:%M")
-    OUTPUT.write_text(build_dashboard(claude_top, gemini_top, len(stocks), ts), encoding="utf-8")
+    OUTPUT.write_text(build_dashboard(merged, len(stocks), ts), encoding="utf-8")
     print(f"Saved to {OUTPUT.resolve()}")
-    print("\nClaude picks:")
-    for s in claude_top:
-        print(f"  #{s.get('rank','?')} {s['ticker']:6s} {s.get('verdict','?'):15s} conv:{s.get('conviction',0)}/10")
-    print("\nGemini picks:")
-    for s in gemini_top:
-        print(f"  #{s.get('rank','?')} {s['ticker']:6s} {s.get('verdict','?'):15s} conv:{s.get('conviction',0)}/10")
+
+    print("\nFinal picks (merged, no duplicates):")
+    for s in merged:
+        models = s.get("models","?")
+        label  = "BOTH  " if models=="both" else "Claude" if models=="claude" else "Gemini"
+        print(f"  [{label}] #{s.get('rank','?')} {s['ticker']:6s} {s.get('verdict','?'):15s} conv:{s.get('conviction',0)}/10")
+
     print("\nView: python3 -m http.server 8080")
     print("Ports tab -> 8080 -> globe -> /canslim_dashboard.html")
 
