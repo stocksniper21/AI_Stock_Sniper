@@ -4,7 +4,7 @@ from datetime import datetime
 from pathlib import Path
 from playwright.async_api import async_playwright
 import anthropic
-import google.generativeai as genai
+import google.genai as genai
 
 SCREENER_URL = "http://www.canslimscreener.com/"
 TARGET       = 50
@@ -176,13 +176,13 @@ def analyze_gemini(stocks):
     if not GEMINI_KEY:
         print("  GEMINI_API_KEY not set")
         return []
-    genai.configure(api_key=GEMINI_KEY)
-    model = genai.GenerativeModel("gemini-2.5-flash")
+    client_gemini = genai.Client(api_key=GEMINI_KEY)
+    
     # send only top 10 to stay within free tier limits
     subset = stocks[:50]
     print(f"  Sending top {len(subset)} stocks to Gemini...")
     t0 = time.time()
-    response = model.generate_content(build_prompt(subset))
+    response = client_gemini.models.generate_content(model="gemini-2.5-flash", contents=build_prompt(subset))
     print(f"  Gemini done in {time.time()-t0:.1f}s")
     result = parse_picks(response.text, stocks)
     print(f"  Gemini picks (>=7): {len(result)}")
@@ -456,7 +456,7 @@ function f(m,btn){{
   document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));
   btn.classList.add('on');
   document.querySelectorAll('.card').forEach(c=>{{
-    c.style.display=m==='all'||c.dataset.models===m?'':'none';
+    c.style.display=m==='all'?'':c.dataset.models===m?'':'none';
   }});
 }}
 function fv(v,btn){{
