@@ -3,96 +3,456 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>CANSLIM AI Screener - April 03, 2026  14:42</title>
+<title>CANSLIM AI - April 05, 2026  01:49</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0;}
-body{background:#f0f2f5;color:#111827;font-family:'Inter',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#f0f2f5;color:#111827;font-family:Inter,sans-serif}
 ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-thumb{background:#d1d5db;border-radius:3px}
-.header{background:#fff;border-bottom:1px solid #e5e7eb;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100;box-shadow:0 1px 3px rgba(0,0,0,.06);}
-.lw{display:flex;align-items:center;gap:12px;}
-.lm{width:36px;height:36px;background:linear-gradient(135deg,#1d4ed8,#7c3aed);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:12px;font-family:monospace;}
-.lt{font-size:16px;font-weight:700;color:#111827;letter-spacing:-0.02em;}.lt span{color:#2563eb;}
-.hm{font-size:12px;color:#6b7280;text-align:right;line-height:1.8;}.hm strong{color:#111827;}
-.ld{display:inline-block;width:7px;height:7px;background:#16a34a;border-radius:50%;margin-right:5px;animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
-.sum{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:20px 32px;}
-.sc{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:16px 20px;box-shadow:0 1px 2px rgba(0,0,0,.04);}
-.sv{font-family:monospace;font-size:24px;font-weight:700;margin-bottom:4px;}
-.sl{font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:.06em;font-weight:500;}
-.ss{font-size:11px;color:#9ca3af;margin-top:2px;}
-.tb{padding:0 32px 16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-.tbl{font-size:12px;color:#6b7280;font-weight:500;margin-right:4px;}
-.fb{padding:5px 14px;border-radius:20px;border:1.5px solid #e5e7eb;background:#fff;color:#374151;font-size:12px;font-weight:500;cursor:pointer;transition:all .15s;}
-.fb:hover{border-color:#2563eb;color:#2563eb;}.fb.on{background:#2563eb;color:#fff;border-color:#2563eb;}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(560px,1fr));gap:16px;padding:0 32px 40px;}
-.card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.05);transition:box-shadow .2s,border-color .2s;}
-.card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08);border-color:#d1d5db;}
-.ch{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px;}
-.cl{display:flex;align-items:center;gap:12px;}
-.rn{font-family:monospace;font-size:13px;font-weight:600;color:#9ca3af;background:#f9fafb;border:1px solid #e5e7eb;border-radius:6px;padding:3px 8px;}
-.tn{font-family:monospace;font-size:22px;font-weight:700;color:#111827;line-height:1;}
-.tl{font-size:12px;color:#6b7280;margin-top:4px;}
-.cr{text-align:right;}
-.vc{font-size:11px;font-weight:600;padding:4px 10px;border-radius:6px;display:inline-block;font-family:monospace;}
-.ul{font-family:monospace;font-size:18px;font-weight:700;margin-top:6px;}
-.mg{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-bottom:14px;}
-.mb{background:#f9fafb;border:1px solid #f3f4f6;border-radius:8px;padding:8px 10px;}
-.ml{font-size:9px;color:#9ca3af;text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-bottom:4px;}
-.mv{font-family:monospace;font-size:13px;font-weight:600;color:#111827;}
-.nb{height:3px;background:#e5e7eb;border-radius:2px;margin-top:4px;overflow:hidden;}
-.rs{margin-bottom:14px;}
-.rt{font-size:10px;color:#9ca3af;text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-bottom:6px;}
-.rp{display:flex;flex-wrap:wrap;gap:4px;}
-.pill{font-size:10px;padding:3px 7px;border-radius:4px;font-weight:500;font-family:monospace;}
-.pill.pass{background:#dcfce7;color:#15803d;border:1px solid #bbf7d0;}
-.pill.fail{background:#f9fafb;color:#9ca3af;border:1px solid #e5e7eb;}
-.ag{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
-.ab{display:flex;gap:10px;padding:10px 12px;border-radius:8px;border:1px solid #e5e7eb;align-items:flex-start;}
-.bull{background:#f0fdf4;border-color:#bbf7d0;}.bear{background:#fff1f2;border-color:#fecdd3;}.cat{background:#eff6ff;border-color:#bfdbfe;}
-.ai{font-size:16px;font-weight:700;width:20px;flex-shrink:0;margin-top:1px;}
-.bull .ai{color:#16a34a;}.bear .ai{color:#dc2626;}.cat .ai{color:#2563eb;}
-.al{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin-bottom:2px;}
-.at{font-size:12px;line-height:1.6;color:#374151;}
-.convrow{display:flex;align-items:center;gap:10px;padding-top:12px;border-top:1px solid #f3f4f6;}
-.convlbl{font-size:11px;color:#6b7280;font-weight:500;white-space:nowrap;}
-.convbar{flex:1;height:5px;background:#f3f4f6;border-radius:3px;overflow:hidden;}
-.convnum{font-family:monospace;font-size:12px;color:#374151;font-weight:600;}
-.foot{padding:20px 32px;text-align:center;font-size:11px;color:#9ca3af;border-top:1px solid #e5e7eb;background:#fff;}
-.foot a{color:#2563eb;text-decoration:none;font-weight:500;}
-@media(max-width:640px){.grid{grid-template-columns:1fr;padding:0 16px 28px;}.mg{grid-template-columns:repeat(3,1fr);}.sum{grid-template-columns:repeat(2,1fr);padding:16px;}.header,.tb{padding-left:16px;padding-right:16px;}}
+.header{background:#fff;border-bottom:1px solid #e5e7eb;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.lw{display:flex;align-items:center;gap:12px}
+.lm{width:36px;height:36px;background:linear-gradient(135deg,#1d4ed8,#7c3aed);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:12px;font-family:monospace}
+.lt{font-size:16px;font-weight:700;color:#111827;letter-spacing:-.02em}.lt span{color:#2563eb}
+.hm{font-size:12px;color:#6b7280;text-align:right;line-height:1.8}.hm strong{color:#111827}
+.ld{display:inline-block;width:7px;height:7px;background:#16a34a;border-radius:50%;margin-right:5px;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.both-box{margin:16px 32px;background:#fffbeb;border:1px solid #fcd34d;border-radius:12px;padding:14px 20px;display:flex;align-items:center;gap:12px}
+.both-label{font-size:12px;font-weight:700;color:#92400e;white-space:nowrap}
+.sum{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:20px 32px}
+.sc{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:16px 20px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.sv{font-family:monospace;font-size:24px;font-weight:700;margin-bottom:4px}
+.sl{font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:.06em;font-weight:500}
+.ss{font-size:11px;color:#9ca3af;margin-top:2px}
+.toolbar{padding:0 32px 16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.tbl{font-size:12px;color:#6b7280;font-weight:500;margin-right:4px}
+.fb{padding:5px 14px;border-radius:20px;border:1.5px solid #e5e7eb;background:#fff;color:#374151;font-size:12px;font-weight:500;cursor:pointer;transition:all .15s}
+.fb:hover{border-color:#2563eb;color:#2563eb}.fb.on{background:#2563eb;color:#fff;border-color:#2563eb}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(560px,1fr));gap:16px;padding:0 32px 40px}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.05);transition:box-shadow .2s,border-color .2s}
+.card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08);border-color:#d1d5db}
+.model-badge-row{margin-bottom:12px}
+.mbadge{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:20px;font-size:11px;font-weight:600;font-family:monospace}
+.mboth{background:#fef3c7;color:#92400e;border:1px solid #fcd34d}
+.mclaude{background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe}
+.mgemini{background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0}
+.ch{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px}
+.cl{display:flex;align-items:center;gap:12px}
+.rn{font-family:monospace;font-size:13px;font-weight:600;color:#9ca3af;background:#f9fafb;border:1px solid #e5e7eb;border-radius:6px;padding:3px 8px}
+.tn{font-family:monospace;font-size:22px;font-weight:700;color:#111827;line-height:1}
+.tl{font-size:12px;color:#6b7280;margin-top:4px}
+.cr{text-align:right}
+.vc{font-size:11px;font-weight:600;padding:4px 10px;border-radius:6px;display:inline-block;font-family:monospace}
+.ul{font-family:monospace;font-size:18px;font-weight:700;margin-top:6px}
+.mg{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-bottom:14px}
+.mb{background:#f9fafb;border:1px solid #f3f4f6;border-radius:8px;padding:8px 10px}
+.ml{font-size:9px;color:#9ca3af;text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-bottom:4px}
+.mv{font-family:monospace;font-size:13px;font-weight:600;color:#111827}
+.nb{height:3px;background:#e5e7eb;border-radius:2px;margin-top:4px;overflow:hidden}
+.rs{margin-bottom:14px}
+.rt{font-size:10px;color:#9ca3af;text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-bottom:6px}
+.rp{display:flex;flex-wrap:wrap;gap:4px}
+.pill-pass{font-size:10px;padding:3px 7px;border-radius:4px;font-weight:500;font-family:monospace;background:#dcfce7;color:#15803d;border:1px solid #bbf7d0}
+.pill-fail{font-size:10px;padding:3px 7px;border-radius:4px;font-weight:500;font-family:monospace;background:#f9fafb;color:#9ca3af;border:1px solid #e5e7eb}
+.ag{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.ab{display:flex;gap:10px;padding:10px 12px;border-radius:8px;border:1px solid #e5e7eb;align-items:flex-start}
+.bull{background:#f0fdf4;border-color:#bbf7d0}.bear{background:#fff1f2;border-color:#fecdd3}.cat{background:#eff6ff;border-color:#bfdbfe}
+.ai{font-size:16px;font-weight:700;width:20px;flex-shrink:0;margin-top:1px}
+.bull .ai{color:#16a34a}.bear .ai{color:#dc2626}.cat .ai{color:#2563eb}
+.al{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin-bottom:2px}
+.at{font-size:12px;line-height:1.6;color:#374151}
+.convrow{display:flex;align-items:center;gap:10px;padding-top:12px;border-top:1px solid #f3f4f6}
+.convlbl{font-size:11px;color:#6b7280;font-weight:500;white-space:nowrap}
+.convbar{flex:1;height:5px;background:#f3f4f6;border-radius:3px;overflow:hidden}
+.convnum{font-family:monospace;font-size:12px;color:#374151;font-weight:600}
+.foot{padding:20px 32px;text-align:center;font-size:11px;color:#9ca3af;border-top:1px solid #e5e7eb;background:#fff;margin-top:8px}
+.foot a{color:#2563eb;text-decoration:none;font-weight:500}
+@media(max-width:640px){.grid{grid-template-columns:1fr;padding:0 16px 28px}.mg{grid-template-columns:repeat(3,1fr)}.sum{grid-template-columns:repeat(2,1fr);padding:16px}.header,.toolbar,.both-box{padding-left:16px;padding-right:16px}}
 </style>
 </head>
 <body>
 <header class="header">
   <div class="lw"><div class="lm">CS</div><div class="lt">CAN<span>SLIM</span> AI Screener</div></div>
-  <div class="hm"><span class="ld"></span>Live from canslimscreener.com · Claude AI<br><strong>50</strong> stocks screened · April 03, 2026  14:42</div>
+  <div class="hm"><span class="ld"></span>Claude + Gemini · canslimscreener.com<br><strong>50</strong> stocks screened · April 05, 2026  01:49</div>
 </header>
+<div class="both-box">
+  <span style="font-size:20px">&#11088;</span>
+  <span class="both-label">Both AIs agree on:</span>
+  <span style="background:#fef3c7;color:#92400e;border:1px solid #fcd34d;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;font-family:monospace">LASR</span> <span style="background:#fef3c7;color:#92400e;border:1px solid #fcd34d;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;font-family:monospace">TSEM</span> <span style="background:#fef3c7;color:#92400e;border:1px solid #fcd34d;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;font-family:monospace">LQDA</span>
+</div>
 <div class="sum">
-  <div class="sc"><div class="sv" style="color:#2563eb">5</div><div class="sl">AI Top Picks</div><div class="ss">conviction &ge; 7/10</div></div>
-  <div class="sc"><div class="sv" style="color:#d97706">8,187</div><div class="sl">Avg N-Value</div><div class="ss">max 8,190</div></div>
-  <div class="sc"><div class="sv" style="color:#16a34a">+104.0%</div><div class="sl">Avg EPS Growth</div><div class="ss">quarterly YoY</div></div>
-  <div class="sc"><div class="sv" style="color:#7c3aed">+61%</div><div class="sl">Avg AI Upside</div><div class="ss">1-2 year target</div></div>
+  <div class="sc"><div class="sv" style="color:#2563eb">9</div><div class="sl">Unique picks</div><div class="ss">3 agreed by both</div></div>
+  <div class="sc"><div class="sv" style="color:#d97706">8,189</div><div class="sl">Avg N-Value</div><div class="ss">max 8,190</div></div>
+  <div class="sc"><div class="sv" style="color:#16a34a">+98.0%</div><div class="sl">Avg EPS Growth</div><div class="ss">quarterly YoY</div></div>
+  <div class="sc"><div class="sv" style="color:#7c3aed">+96%</div><div class="sl">Avg AI Upside</div><div class="ss">1-2 year target</div></div>
 </div>
-<div class="tb">
+<div class="toolbar">
   <span class="tbl">Filter:</span>
-  <button class="fb on" onclick="f('all',this)">All Picks</button>
-  <button class="fb" onclick="f('STRONG BUY',this)">Strong Buy</button>
-  <button class="fb" onclick="f('BUY',this)">Buy</button>
-  <button class="fb" onclick="f('SPECULATIVE BUY',this)">Speculative</button>
+  <button class="fb on" onclick="f('all',this)">All picks</button>
+  <button class="fb" onclick="f('both',this)">Both AIs &#11088;</button>
+  <button class="fb" onclick="f('claude',this)">Claude only</button>
+  <button class="fb" onclick="f('gemini',this)">Gemini only</button>
+  <button class="fb" onclick="fv('STRONG BUY',this)">Strong Buy</button>
 </div>
-<div class="grid"><div class="card" data-verdict="STRONG BUY"><div class="ch"><div class="cl"><div class="rn">#1</div><div><div class="tn">LASR</div><div class="tl">AI Infrastructure Optics</div></div></div><div class="cr"><span class="vc" style="color:#16a34a;background:#16a34a18;border:1.5px solid #16a34a40">STRONG BUY</span><div class="ul" style="color:#16a34a">+75% target</div></div></div><div class="mg"><div class="mb"><div class="ml">N-Value</div><div class="mv" style="color:#d97706">8,190</div><div class="nb"><div style="width:100%;background:#d97706;height:100%;border-radius:2px"></div></div></div><div class="mb"><div class="ml">Lwowski</div><div class="mv" style="color:#7c3aed">27,156</div></div><div class="mb"><div class="ml">Tests</div><div class="mv" style="color:#16a34a">11/11</div></div><div class="mb"><div class="ml">RS Value</div><div class="mv" style="color:#2563eb">31</div></div><div class="mb"><div class="ml">EPS Growth</div><div class="mv" style="color:#16a34a">+81.0%</div></div><div class="mb"><div class="ml">Sales Growth</div><div class="mv" style="color:#16a34a">+71.0%</div></div><div class="mb"><div class="ml">Inst. Own</div><div class="mv" style="color:#7c3aed">81.0%</div></div><div class="mb"><div class="ml">Price</div><div class="mv">$63.86</div></div><div class="mb"><div class="ml">52w High</div><div class="mv">$72.00</div></div><div class="mb"><div class="ml">52w Low</div><div class="mv">$6.44</div></div><div class="mb"><div class="ml">vs 52w High</div><div class="mv" style="color:#dc2626">89%</div></div><div class="mb"><div class="ml">Volume</div><div class="mv">2.2M</div></div></div><div class="rs"><div class="rt">CANSLIM Rules</div><div class="rp"><span class="pill pass">SMA50>150</span><span class="pill pass">SMA150>200</span><span class="pill pass">52wk Span</span><span class="pill pass">RS</span><span class="pill pass">Liquidity</span><span class="pill pass">Near 52wH</span><span class="pill pass">Prev Close</span><span class="pill pass">SMA200up</span><span class="pill pass">Inst Own</span><span class="pill pass">>SMA50</span><span class="pill pass">Sales</span><span class="pill pass">EPS</span></div></div><div class="ag"><div class="ab bull"><b class="ai">+</b><div><div class="al">Bull Case</div><div class="at">Applied Materials is a perfect proxy for AI infrastructure buildout with 81% EPS growth and 71% sales growth acceleration. The company benefits from massive datacenter expansion requiring advanced optical components for high-speed interconnects. Strong institutional backing at 81% with room to grow as RS of 31 suggests early discovery phase. Trading 11% below 52-week highs with 80% upside from 200-day moving average showing strong momentum. AI infrastructure spending is in early innings with multi-year runway ahead.</div></div></div><div class="ab bear"><b class="ai">-</b><div><div class="al">Key Risk</div><div class="at">Cyclical semiconductor equipment demand could face headwinds if AI capex spending slows. High valuation multiple compression risk if growth rates normalize.</div></div></div><div class="ab cat"><b class="ai">*</b><div><div class="al">Catalyst</div><div class="at">Q4 earnings showing continued AI infrastructure demand acceleration</div></div></div></div><div class="convrow"><span class="convlbl">Conviction</span><div class="convbar"><div style="width:90%;background:#16a34a;height:100%;border-radius:3px"></div></div><span class="convnum">9/10</span></div></div><div class="card" data-verdict="STRONG BUY"><div class="ch"><div class="cl"><div class="rn">#2</div><div><div class="tn">ECO</div><div class="tl">Energy Infrastructure</div></div></div><div class="cr"><span class="vc" style="color:#16a34a;background:#16a34a18;border:1.5px solid #16a34a40">STRONG BUY</span><div class="ul" style="color:#16a34a">+60% target</div></div></div><div class="mg"><div class="mb"><div class="ml">N-Value</div><div class="mv" style="color:#d97706">8,190</div><div class="nb"><div style="width:100%;background:#d97706;height:100%;border-radius:2px"></div></div></div><div class="mb"><div class="ml">Lwowski</div><div class="mv" style="color:#7c3aed">19,315</div></div><div class="mb"><div class="ml">Tests</div><div class="mv" style="color:#16a34a">11/11</div></div><div class="mb"><div class="ml">RS Value</div><div class="mv" style="color:#2563eb">27</div></div><div class="mb"><div class="ml">EPS Growth</div><div class="mv" style="color:#16a34a">+330.0%</div></div><div class="mb"><div class="ml">Sales Growth</div><div class="mv" style="color:#16a34a">+49.0%</div></div><div class="mb"><div class="ml">Inst. Own</div><div class="mv" style="color:#7c3aed">21.0%</div></div><div class="mb"><div class="ml">Price</div><div class="mv">$49.01</div></div><div class="mb"><div class="ml">52w High</div><div class="mv">$55.00</div></div><div class="mb"><div class="ml">52w Low</div><div class="mv">$17.76</div></div><div class="mb"><div class="ml">vs 52w High</div><div class="mv" style="color:#dc2626">89%</div></div><div class="mb"><div class="ml">Volume</div><div class="mv">0.3M</div></div></div><div class="rs"><div class="rt">CANSLIM Rules</div><div class="rp"><span class="pill pass">SMA50>150</span><span class="pill pass">SMA150>200</span><span class="pill pass">52wk Span</span><span class="pill pass">RS</span><span class="pill pass">Liquidity</span><span class="pill pass">Near 52wH</span><span class="pill pass">Prev Close</span><span class="pill pass">SMA200up</span><span class="pill pass">Inst Own</span><span class="pill pass">>SMA50</span><span class="pill pass">Sales</span><span class="pill pass">EPS</span></div></div><div class="ag"><div class="ab bull"><b class="ai">+</b><div><div class="al">Bull Case</div><div class="at">Okeanis Eco Tankers shows explosive 330% EPS growth with 49% sales growth in energy transportation sector. Low institutional ownership at 21% provides massive room for discovery as energy infrastructure gains attention. RS of 27 indicates early stage recognition with significant upside potential. Trading near 52-week highs but with 49% gain vs 200-day SMA showing sustained momentum. Energy security trends and infrastructure needs support multi-year growth trajectory.</div></div></div><div class="ab bear"><b class="ai">-</b><div><div class="al">Key Risk</div><div class="at">Commodity shipping rates are cyclical and could face pressure from global economic slowdown. Small float increases volatility risk.</div></div></div><div class="ab cat"><b class="ai">*</b><div><div class="al">Catalyst</div><div class="at">Next quarterly earnings showing sustained shipping rate strength</div></div></div></div><div class="convrow"><span class="convlbl">Conviction</span><div class="convbar"><div style="width:80%;background:#16a34a;height:100%;border-radius:3px"></div></div><span class="convnum">8/10</span></div></div><div class="card" data-verdict="STRONG BUY"><div class="ch"><div class="cl"><div class="rn">#3</div><div><div class="tn">TSEM</div><div class="tl">Semiconductor Testing</div></div></div><div class="cr"><span class="vc" style="color:#16a34a;background:#16a34a18;border:1.5px solid #16a34a40">STRONG BUY</span><div class="ul" style="color:#16a34a">+70% target</div></div></div><div class="mg"><div class="mb"><div class="ml">N-Value</div><div class="mv" style="color:#d97706">8,186</div><div class="nb"><div style="width:100%;background:#d97706;height:100%;border-radius:2px"></div></div></div><div class="mb"><div class="ml">Lwowski</div><div class="mv" style="color:#7c3aed">27,478</div></div><div class="mb"><div class="ml">Tests</div><div class="mv" style="color:#16a34a">10/11</div></div><div class="mb"><div class="ml">RS Value</div><div class="mv" style="color:#2563eb">39</div></div><div class="mb"><div class="ml">EPS Growth</div><div class="mv" style="color:#16a34a">+44.0%</div></div><div class="mb"><div class="ml">Sales Growth</div><div class="mv" style="color:#16a34a">+14.0%</div></div><div class="mb"><div class="ml">Inst. Own</div><div class="mv" style="color:#7c3aed">74.0%</div></div><div class="mb"><div class="ml">Price</div><div class="mv">$174.68</div></div><div class="mb"><div class="ml">52w High</div><div class="mv">$189.00</div></div><div class="mb"><div class="ml">52w Low</div><div class="mv">$29.65</div></div><div class="mb"><div class="ml">vs 52w High</div><div class="mv" style="color:#dc2626">92%</div></div><div class="mb"><div class="ml">Volume</div><div class="mv">4.2M</div></div></div><div class="rs"><div class="rt">CANSLIM Rules</div><div class="rp"><span class="pill pass">SMA50>150</span><span class="pill pass">SMA150>200</span><span class="pill pass">52wk Span</span><span class="pill pass">RS</span><span class="pill pass">Liquidity</span><span class="pill pass">Near 52wH</span><span class="pill pass">Prev Close</span><span class="pill pass">SMA200up</span><span class="pill pass">Inst Own</span><span class="pill pass">>SMA50</span><span class="pill fail">Sales</span><span class="pill pass">EPS</span></div></div><div class="ag"><div class="ab bull"><b class="ai">+</b><div><div class="al">Bull Case</div><div class="at">Tower Semiconductor benefits from AI chip testing demand with 44% EPS growth and strong momentum. RS of 39 shows early institutional recognition phase with 74% ownership providing stability. Trading near 52-week highs with 90% gain from 200-day moving average showing exceptional momentum. Semiconductor testing is critical bottleneck for AI chip production ramp. Company positioned for multi-year AI infrastructure buildout cycle.</div></div></div><div class="ab bear"><b class="ai">-</b><div><div class="al">Key Risk</div><div class="at">Semiconductor cycle volatility could impact testing demand. Geopolitical risks in chip manufacturing supply chain.</div></div></div><div class="ab cat"><b class="ai">*</b><div><div class="al">Catalyst</div><div class="at">AI chip testing capacity expansion announcements</div></div></div></div><div class="convrow"><span class="convlbl">Conviction</span><div class="convbar"><div style="width:80%;background:#16a34a;height:100%;border-radius:3px"></div></div><span class="convnum">8/10</span></div></div><div class="card" data-verdict="BUY"><div class="ch"><div class="cl"><div class="rn">#4</div><div><div class="tn">FSLY</div><div class="tl">Edge Computing CDN</div></div></div><div class="cr"><span class="vc" style="color:#2563eb;background:#2563eb18;border:1.5px solid #2563eb40">BUY</span><div class="ul" style="color:#16a34a">+45% target</div></div></div><div class="mg"><div class="mb"><div class="ml">N-Value</div><div class="mv" style="color:#d97706">8,186</div><div class="nb"><div style="width:100%;background:#d97706;height:100%;border-radius:2px"></div></div></div><div class="mb"><div class="ml">Lwowski</div><div class="mv" style="color:#7c3aed">53,779</div></div><div class="mb"><div class="ml">Tests</div><div class="mv" style="color:#16a34a">10/11</div></div><div class="mb"><div class="ml">RS Value</div><div class="mv" style="color:#2563eb">88</div></div><div class="mb"><div class="ml">EPS Growth</div><div class="mv" style="color:#16a34a">+56.0%</div></div><div class="mb"><div class="ml">Sales Growth</div><div class="mv" style="color:#16a34a">+23.0%</div></div><div class="mb"><div class="ml">Inst. Own</div><div class="mv" style="color:#7c3aed">76.0%</div></div><div class="mb"><div class="ml">Price</div><div class="mv">$28.59</div></div><div class="mb"><div class="ml">52w High</div><div class="mv">$30.00</div></div><div class="mb"><div class="ml">52w Low</div><div class="mv">$5.00</div></div><div class="mb"><div class="ml">vs 52w High</div><div class="mv" style="color:#dc2626">95%</div></div><div class="mb"><div class="ml">Volume</div><div class="mv">9.8M</div></div></div><div class="rs"><div class="rt">CANSLIM Rules</div><div class="rp"><span class="pill pass">SMA50>150</span><span class="pill pass">SMA150>200</span><span class="pill pass">52wk Span</span><span class="pill pass">RS</span><span class="pill pass">Liquidity</span><span class="pill pass">Near 52wH</span><span class="pill pass">Prev Close</span><span class="pill pass">SMA200up</span><span class="pill pass">Inst Own</span><span class="pill pass">>SMA50</span><span class="pill fail">Sales</span><span class="pill pass">EPS</span></div></div><div class="ag"><div class="ab bull"><b class="ai">+</b><div><div class="al">Bull Case</div><div class="at">Fastly's edge computing platform benefits from AI inference demand with 56% EPS growth acceleration. High RS of 88 shows strong momentum but still room for institutional discovery at current levels. Trading at 52-week highs with 156% gain from 200-day moving average showing powerful trend. Edge computing is critical for AI application performance and latency reduction. Company well-positioned for AI inference infrastructure buildout.</div></div></div><div class="ab bear"><b class="ai">-</b><div><div class="al">Key Risk</div><div class="at">Intense competition from hyperscaler CDNs could pressure margins. High volatility stock with execution risk on growth targets.</div></div></div><div class="ab cat"><b class="ai">*</b><div><div class="al">Catalyst</div><div class="at">AI partnership announcements or major customer wins</div></div></div></div><div class="convrow"><span class="convlbl">Conviction</span><div class="convbar"><div style="width:70%;background:#2563eb;height:100%;border-radius:3px"></div></div><span class="convnum">7/10</span></div></div><div class="card" data-verdict="SPECULATIVE BUY"><div class="ch"><div class="cl"><div class="rn">#5</div><div><div class="tn">CLMT</div><div class="tl">Industrial Automation</div></div></div><div class="cr"><span class="vc" style="color:#d97706;background:#d9770618;border:1.5px solid #d9770640">SPECULATIVE BUY</span><div class="ul" style="color:#16a34a">+55% target</div></div></div><div class="mg"><div class="mb"><div class="ml">N-Value</div><div class="mv" style="color:#d97706">8,184</div><div class="nb"><div style="width:100%;background:#d97706;height:100%;border-radius:2px"></div></div></div><div class="mb"><div class="ml">Lwowski</div><div class="mv" style="color:#7c3aed">24,974</div></div><div class="mb"><div class="ml">Tests</div><div class="mv" style="color:#16a34a">10/11</div></div><div class="mb"><div class="ml">RS Value</div><div class="mv" style="color:#2563eb">37</div></div><div class="mb"><div class="ml">EPS Growth</div><div class="mv" style="color:#16a34a">+9.0%</div></div><div class="mb"><div class="ml">Sales Growth</div><div class="mv" style="color:#16a34a">+9.0%</div></div><div class="mb"><div class="ml">Inst. Own</div><div class="mv" style="color:#7c3aed">52.0%</div></div><div class="mb"><div class="ml">Price</div><div class="mv">$30.79</div></div><div class="mb"><div class="ml">52w High</div><div class="mv">$32.00</div></div><div class="mb"><div class="ml">52w Low</div><div class="mv">$8.99</div></div><div class="mb"><div class="ml">vs 52w High</div><div class="mv" style="color:#dc2626">96%</div></div><div class="mb"><div class="ml">Volume</div><div class="mv">1.7M</div></div></div><div class="rs"><div class="rt">CANSLIM Rules</div><div class="rp"><span class="pill pass">SMA50>150</span><span class="pill pass">SMA150>200</span><span class="pill pass">52wk Span</span><span class="pill pass">RS</span><span class="pill pass">Liquidity</span><span class="pill pass">Near 52wH</span><span class="pill pass">Prev Close</span><span class="pill pass">SMA200up</span><span class="pill pass">Inst Own</span><span class="pill pass">>SMA50</span><span class="pill fail">Sales</span><span class="pill fail">EPS</span></div></div><div class="ag"><div class="ab bull"><b class="ai">+</b><div><div class="al">Bull Case</div><div class="at">Calumet Specialty Products shows early stage turnaround with improving fundamentals and 60% momentum gain. RS of 37 indicates growing recognition while 52% institutional ownership leaves room for discovery. Trading near 52-week highs suggesting strong operational momentum. Industrial automation and specialty chemicals benefit from reshoring trends. Low absolute price provides asymmetric risk/reward profile for small position.</div></div></div><div class="ab bear"><b class="ai">-</b><div><div class="al">Key Risk</div><div class="at">Cyclical industrial business with execution risk on turnaround story. Small cap volatility and liquidity constraints during market stress.</div></div></div><div class="ab cat"><b class="ai">*</b><div><div class="al">Catalyst</div><div class="at">Next earnings showing continued operational improvement</div></div></div></div><div class="convrow"><span class="convlbl">Conviction</span><div class="convbar"><div style="width:70%;background:#2563eb;height:100%;border-radius:3px"></div></div><span class="convnum">7/10</span></div></div></div>
+<div class="grid" id="grid">
+<div class="card" data-verdict="STRONG BUY" data-models="both">
+  <div class="model-badge-row"><span class="mbadge mboth">&#9733; Claude + Gemini &nbsp;<span style="opacity:.7;font-size:9px">Claude:9/10 · Gemini:9/10</span></span></div>
+  <div class="ch">
+    <div class="cl">
+      <div class="rn">#1</div>
+      <div><div class="tn">LASR</div><div class="tl">AI Laser Infrastructure</div></div>
+    </div>
+    <div class="cr">
+      <span class="vc" style="color:#16a34a;background:#16a34a18;border:1.5px solid #16a34a40">STRONG BUY</span>
+      <div class="ul" style="color:#16a34a">+75% target</div>
+    </div>
+  </div>
+  <div class="mg">
+    <div class="mb"><div class="ml">N-Value</div><div class="mv" style="color:#d97706">8,190</div><div class="nb"><div style="width:100%;background:#d97706;height:100%;border-radius:2px"></div></div></div>
+    <div class="mb"><div class="ml">Lwowski</div><div class="mv" style="color:#7c3aed">27,156</div></div>
+    <div class="mb"><div class="ml">Tests</div><div class="mv" style="color:#16a34a">11/11</div></div>
+    <div class="mb"><div class="ml">RS</div><div class="mv" style="color:#2563eb">31</div></div>
+    <div class="mb"><div class="ml">EPS%</div><div class="mv" style="color:#16a34a">+81.0%</div></div>
+    <div class="mb"><div class="ml">Sales%</div><div class="mv" style="color:#16a34a">+71.0%</div></div>
+    <div class="mb"><div class="ml">Inst Own</div><div class="mv" style="color:#7c3aed">81.0%</div></div>
+    <div class="mb"><div class="ml">Price</div><div class="mv">$63.86</div></div>
+    <div class="mb"><div class="ml">52w High</div><div class="mv">$72.00</div></div>
+    <div class="mb"><div class="ml">52w Low</div><div class="mv">$6.44</div></div>
+    <div class="mb"><div class="ml">vs 52wH</div><div class="mv" style="color:#dc2626">89%</div></div>
+    <div class="mb"><div class="ml">Volume</div><div class="mv">2.2M</div></div>
+  </div>
+  <div class="rs"><div class="rt">CANSLIM Rules</div><div class="rp"><span class="pill-pass">SMA50>150</span><span class="pill-pass">SMA150>200</span><span class="pill-pass">52wkSpan</span><span class="pill-pass">RS</span><span class="pill-pass">Liquidity</span><span class="pill-pass">Near52wH</span><span class="pill-pass">PrevClose</span><span class="pill-pass">SMA200up</span><span class="pill-pass">InstOwn</span><span class="pill-pass">>SMA50</span><span class="pill-pass">Sales</span><span class="pill-pass">EPS</span></div></div>
+  <div class="ag">
+    <div class="ab bull"><b class="ai">+</b><div><div class="al">Bull Case</div><div class="at">nLIGHT delivers exceptional fundamentals with +81% EPS growth and +71% sales acceleration in industrial lasers essential for AI chip manufacturing. Strong institutional backing at 81% with low RS of 31 suggests the AI infrastructure story is still undiscovered.</div></div></div>
+    <div class="ab bear"><b class="ai">-</b><div><div class="al">Key Risk</div><div class="at">Cyclical laser demand could weaken if semiconductor capex slows.</div></div></div>
+    <div class="ab cat"><b class="ai">*</b><div><div class="al">Catalyst</div><div class="at">New AI chip fab announcements driving laser equipment orders</div></div></div>
+  </div>
+  <div class="convrow">
+    <span class="convlbl">Conviction</span>
+    <div class="convbar"><div style="width:90%;background:#16a34a;height:100%;border-radius:3px"></div></div>
+    <span class="convnum">9/10</span>
+  </div>
+</div>
+<div class="card" data-verdict="BUY" data-models="both">
+  <div class="model-badge-row"><span class="mbadge mboth">&#9733; Claude + Gemini &nbsp;<span style="opacity:.7;font-size:9px">Claude:8/10 · Gemini:7/10</span></span></div>
+  <div class="ch">
+    <div class="cl">
+      <div class="rn">#2</div>
+      <div><div class="tn">TSEM</div><div class="tl">AI Semiconductor Testing</div></div>
+    </div>
+    <div class="cr">
+      <span class="vc" style="color:#2563eb;background:#2563eb18;border:1.5px solid #2563eb40">BUY</span>
+      <div class="ul" style="color:#16a34a">+65% target</div>
+    </div>
+  </div>
+  <div class="mg">
+    <div class="mb"><div class="ml">N-Value</div><div class="mv" style="color:#d97706">8,186</div><div class="nb"><div style="width:100%;background:#d97706;height:100%;border-radius:2px"></div></div></div>
+    <div class="mb"><div class="ml">Lwowski</div><div class="mv" style="color:#7c3aed">27,478</div></div>
+    <div class="mb"><div class="ml">Tests</div><div class="mv" style="color:#16a34a">10/11</div></div>
+    <div class="mb"><div class="ml">RS</div><div class="mv" style="color:#2563eb">39</div></div>
+    <div class="mb"><div class="ml">EPS%</div><div class="mv" style="color:#16a34a">+44.0%</div></div>
+    <div class="mb"><div class="ml">Sales%</div><div class="mv" style="color:#16a34a">+14.0%</div></div>
+    <div class="mb"><div class="ml">Inst Own</div><div class="mv" style="color:#7c3aed">74.0%</div></div>
+    <div class="mb"><div class="ml">Price</div><div class="mv">$174.68</div></div>
+    <div class="mb"><div class="ml">52w High</div><div class="mv">$189.00</div></div>
+    <div class="mb"><div class="ml">52w Low</div><div class="mv">$29.65</div></div>
+    <div class="mb"><div class="ml">vs 52wH</div><div class="mv" style="color:#dc2626">92%</div></div>
+    <div class="mb"><div class="ml">Volume</div><div class="mv">4.2M</div></div>
+  </div>
+  <div class="rs"><div class="rt">CANSLIM Rules</div><div class="rp"><span class="pill-pass">SMA50>150</span><span class="pill-pass">SMA150>200</span><span class="pill-pass">52wkSpan</span><span class="pill-pass">RS</span><span class="pill-pass">Liquidity</span><span class="pill-pass">Near52wH</span><span class="pill-pass">PrevClose</span><span class="pill-pass">SMA200up</span><span class="pill-pass">InstOwn</span><span class="pill-pass">>SMA50</span><span class="pill-fail">Sales</span><span class="pill-pass">EPS</span></div></div>
+  <div class="ag">
+    <div class="ab bull"><b class="ai">+</b><div><div class="al">Bull Case</div><div class="at">Tower Semiconductor benefits directly from AI chip demand with +44% EPS growth and strong institutional support. Trading 90% above 200-day MA with room to run as AI semiconductor testing becomes critical infrastructure.</div></div></div>
+    <div class="ab bear"><b class="ai">-</b><div><div class="al">Key Risk</div><div class="at">Semiconductor testing is cyclical and sensitive to chip industry downturns.</div></div></div>
+    <div class="ab cat"><b class="ai">*</b><div><div class="al">Catalyst</div><div class="at">AI chip complexity driving higher testing requirements and pricing</div></div></div>
+  </div>
+  <div class="convrow">
+    <span class="convlbl">Conviction</span>
+    <div class="convbar"><div style="width:80%;background:#16a34a;height:100%;border-radius:3px"></div></div>
+    <span class="convnum">8/10</span>
+  </div>
+</div>
+<div class="card" data-verdict="SPECULATIVE BUY" data-models="both">
+  <div class="model-badge-row"><span class="mbadge mboth">&#9733; Claude + Gemini &nbsp;<span style="opacity:.7;font-size:9px">Claude:7/10 · Gemini:9/10</span></span></div>
+  <div class="ch">
+    <div class="cl">
+      <div class="rn">#3</div>
+      <div><div class="tn">LQDA</div><div class="tl">AI Data Analytics</div></div>
+    </div>
+    <div class="cr">
+      <span class="vc" style="color:#d97706;background:#d9770618;border:1.5px solid #d9770640">SPECULATIVE BUY</span>
+      <div class="ul" style="color:#16a34a">+110% target</div>
+    </div>
+  </div>
+  <div class="mg">
+    <div class="mb"><div class="ml">N-Value</div><div class="mv" style="color:#d97706">8,190</div><div class="nb"><div style="width:100%;background:#d97706;height:100%;border-radius:2px"></div></div></div>
+    <div class="mb"><div class="ml">Lwowski</div><div class="mv" style="color:#7c3aed">7,066</div></div>
+    <div class="mb"><div class="ml">Tests</div><div class="mv" style="color:#16a34a">11/11</div></div>
+    <div class="mb"><div class="ml">RS</div><div class="mv" style="color:#2563eb">2</div></div>
+    <div class="mb"><div class="ml">EPS%</div><div class="mv" style="color:#16a34a">+132.0%</div></div>
+    <div class="mb"><div class="ml">Sales%</div><div class="mv" style="color:#16a34a">+3055.0%</div></div>
+    <div class="mb"><div class="ml">Inst Own</div><div class="mv" style="color:#7c3aed">66.0%</div></div>
+    <div class="mb"><div class="ml">Price</div><div class="mv">$36.77</div></div>
+    <div class="mb"><div class="ml">52w High</div><div class="mv">$47.00</div></div>
+    <div class="mb"><div class="ml">52w Low</div><div class="mv">$11.99</div></div>
+    <div class="mb"><div class="ml">vs 52wH</div><div class="mv" style="color:#dc2626">78%</div></div>
+    <div class="mb"><div class="ml">Volume</div><div class="mv">1.0M</div></div>
+  </div>
+  <div class="rs"><div class="rt">CANSLIM Rules</div><div class="rp"><span class="pill-pass">SMA50>150</span><span class="pill-pass">SMA150>200</span><span class="pill-pass">52wkSpan</span><span class="pill-pass">RS</span><span class="pill-pass">Liquidity</span><span class="pill-pass">Near52wH</span><span class="pill-pass">PrevClose</span><span class="pill-pass">SMA200up</span><span class="pill-pass">InstOwn</span><span class="pill-pass">>SMA50</span><span class="pill-pass">Sales</span><span class="pill-pass">EPS</span></div></div>
+  <div class="ag">
+    <div class="ab bull"><b class="ai">+</b><div><div class="al">Bull Case</div><div class="at">Liquidia shows explosive +3055% sales growth and +132% EPS acceleration with potential AI applications in pharmaceutical analytics. Extremely low RS of 2 makes this a deep value play in small-cap biotech with technology applications.</div></div></div>
+    <div class="ab bear"><b class="ai">-</b><div><div class="al">Key Risk</div><div class="at">Small biotech with execution risk and limited diversification outside core pharmaceutical focus.</div></div></div>
+    <div class="ab cat"><b class="ai">*</b><div><div class="al">Catalyst</div><div class="at">FDA approvals or partnerships expanding technology platform</div></div></div>
+  </div>
+  <div class="convrow">
+    <span class="convlbl">Conviction</span>
+    <div class="convbar"><div style="width:70%;background:#2563eb;height:100%;border-radius:3px"></div></div>
+    <span class="convnum">7/10</span>
+  </div>
+</div>
+<div class="card" data-verdict="SPECULATIVE BUY" data-models="claude">
+  <div class="model-badge-row"><span class="mbadge mclaude">&#9632; Claude pick</span></div>
+  <div class="ch">
+    <div class="cl">
+      <div class="rn">#4</div>
+      <div><div class="tn">AAOI</div><div class="tl">AI Infrastructure Recovery</div></div>
+    </div>
+    <div class="cr">
+      <span class="vc" style="color:#d97706;background:#d9770618;border:1.5px solid #d9770640">SPECULATIVE BUY</span>
+      <div class="ul" style="color:#16a34a">+95% target</div>
+    </div>
+  </div>
+  <div class="mg">
+    <div class="mb"><div class="ml">N-Value</div><div class="mv" style="color:#d97706">8,190</div><div class="nb"><div style="width:100%;background:#d97706;height:100%;border-radius:2px"></div></div></div>
+    <div class="mb"><div class="ml">Lwowski</div><div class="mv" style="color:#7c3aed">50,217</div></div>
+    <div class="mb"><div class="ml">Tests</div><div class="mv" style="color:#16a34a">11/11</div></div>
+    <div class="mb"><div class="ml">RS</div><div class="mv" style="color:#2563eb">72</div></div>
+    <div class="mb"><div class="ml">EPS%</div><div class="mv" style="color:#16a34a">+99.0%</div></div>
+    <div class="mb"><div class="ml">Sales%</div><div class="mv" style="color:#16a34a">+34.0%</div></div>
+    <div class="mb"><div class="ml">Inst Own</div><div class="mv" style="color:#7c3aed">67.0%</div></div>
+    <div class="mb"><div class="ml">Price</div><div class="mv">$97.42</div></div>
+    <div class="mb"><div class="ml">52w High</div><div class="mv">$127.00</div></div>
+    <div class="mb"><div class="ml">52w Low</div><div class="mv">$10.05</div></div>
+    <div class="mb"><div class="ml">vs 52wH</div><div class="mv" style="color:#dc2626">77%</div></div>
+    <div class="mb"><div class="ml">Volume</div><div class="mv">7.6M</div></div>
+  </div>
+  <div class="rs"><div class="rt">CANSLIM Rules</div><div class="rp"><span class="pill-pass">SMA50>150</span><span class="pill-pass">SMA150>200</span><span class="pill-pass">52wkSpan</span><span class="pill-pass">RS</span><span class="pill-pass">Liquidity</span><span class="pill-pass">Near52wH</span><span class="pill-pass">PrevClose</span><span class="pill-pass">SMA200up</span><span class="pill-pass">InstOwn</span><span class="pill-pass">>SMA50</span><span class="pill-pass">Sales</span><span class="pill-pass">EPS</span></div></div>
+  <div class="ag">
+    <div class="ab bull"><b class="ai">+</b><div><div class="al">Bull Case</div><div class="at">Applied Optoelectronics shows explosive EPS growth of +99% with strong sales acceleration in optical components critical for AI data centers. The company is emerging from a deep trough with massive institutional accumulation and 160% momentum above its 200-day moving average.</div></div></div>
+    <div class="ab bear"><b class="ai">-</b><div><div class="al">Key Risk</div><div class="at">High volatility optical component supplier vulnerable to customer concentration and inventory cycles.</div></div></div>
+    <div class="ab cat"><b class="ai">*</b><div><div class="al">Catalyst</div><div class="at">Q4 earnings confirming sustained AI infrastructure demand</div></div></div>
+  </div>
+  <div class="convrow">
+    <span class="convlbl">Conviction</span>
+    <div class="convbar"><div style="width:80%;background:#16a34a;height:100%;border-radius:3px"></div></div>
+    <span class="convnum">8/10</span>
+  </div>
+</div>
+<div class="card" data-verdict="SPECULATIVE BUY" data-models="claude">
+  <div class="model-badge-row"><span class="mbadge mclaude">&#9632; Claude pick</span></div>
+  <div class="ch">
+    <div class="cl">
+      <div class="rn">#5</div>
+      <div><div class="tn">FSLY</div><div class="tl">AI Edge Computing</div></div>
+    </div>
+    <div class="cr">
+      <span class="vc" style="color:#d97706;background:#d9770618;border:1.5px solid #d9770640">SPECULATIVE BUY</span>
+      <div class="ul" style="color:#16a34a">+120% target</div>
+    </div>
+  </div>
+  <div class="mg">
+    <div class="mb"><div class="ml">N-Value</div><div class="mv" style="color:#d97706">8,186</div><div class="nb"><div style="width:100%;background:#d97706;height:100%;border-radius:2px"></div></div></div>
+    <div class="mb"><div class="ml">Lwowski</div><div class="mv" style="color:#7c3aed">53,779</div></div>
+    <div class="mb"><div class="ml">Tests</div><div class="mv" style="color:#16a34a">10/11</div></div>
+    <div class="mb"><div class="ml">RS</div><div class="mv" style="color:#2563eb">88</div></div>
+    <div class="mb"><div class="ml">EPS%</div><div class="mv" style="color:#16a34a">+56.0%</div></div>
+    <div class="mb"><div class="ml">Sales%</div><div class="mv" style="color:#16a34a">+23.0%</div></div>
+    <div class="mb"><div class="ml">Inst Own</div><div class="mv" style="color:#7c3aed">76.0%</div></div>
+    <div class="mb"><div class="ml">Price</div><div class="mv">$28.59</div></div>
+    <div class="mb"><div class="ml">52w High</div><div class="mv">$30.00</div></div>
+    <div class="mb"><div class="ml">52w Low</div><div class="mv">$5.00</div></div>
+    <div class="mb"><div class="ml">vs 52wH</div><div class="mv" style="color:#dc2626">95%</div></div>
+    <div class="mb"><div class="ml">Volume</div><div class="mv">9.8M</div></div>
+  </div>
+  <div class="rs"><div class="rt">CANSLIM Rules</div><div class="rp"><span class="pill-pass">SMA50>150</span><span class="pill-pass">SMA150>200</span><span class="pill-pass">52wkSpan</span><span class="pill-pass">RS</span><span class="pill-pass">Liquidity</span><span class="pill-pass">Near52wH</span><span class="pill-pass">PrevClose</span><span class="pill-pass">SMA200up</span><span class="pill-pass">InstOwn</span><span class="pill-pass">>SMA50</span><span class="pill-fail">Sales</span><span class="pill-pass">EPS</span></div></div>
+  <div class="ag">
+    <div class="ab bull"><b class="ai">+</b><div><div class="al">Bull Case</div><div class="at">Fastly shows impressive turnaround with +56% EPS growth and edge computing platform positioned for AI inference workloads. High RS of 88 but still recovering from previous lows with 156% momentum suggests breakout potential.</div></div></div>
+    <div class="ab bear"><b class="ai">-</b><div><div class="al">Key Risk</div><div class="at">Intense competition from hyperscale cloud providers in edge computing.</div></div></div>
+    <div class="ab cat"><b class="ai">*</b><div><div class="al">Catalyst</div><div class="at">Major AI edge computing partnerships or customer wins</div></div></div>
+  </div>
+  <div class="convrow">
+    <span class="convlbl">Conviction</span>
+    <div class="convbar"><div style="width:70%;background:#2563eb;height:100%;border-radius:3px"></div></div>
+    <span class="convnum">7/10</span>
+  </div>
+</div>
+<div class="card" data-verdict="STRONG BUY" data-models="gemini">
+  <div class="model-badge-row"><span class="mbadge mgemini">&#9670; Gemini pick</span></div>
+  <div class="ch">
+    <div class="cl">
+      <div class="rn">#6</div>
+      <div><div class="tn">ECG</div><div class="tl">Niche Technology / Specialized Manufacturing</div></div>
+    </div>
+    <div class="cr">
+      <span class="vc" style="color:#16a34a;background:#16a34a18;border:1.5px solid #16a34a40">STRONG BUY</span>
+      <div class="ul" style="color:#16a34a">+100% target</div>
+    </div>
+  </div>
+  <div class="mg">
+    <div class="mb"><div class="ml">N-Value</div><div class="mv" style="color:#d97706">8,190</div><div class="nb"><div style="width:100%;background:#d97706;height:100%;border-radius:2px"></div></div></div>
+    <div class="mb"><div class="ml">Lwowski</div><div class="mv" style="color:#7c3aed">18,162</div></div>
+    <div class="mb"><div class="ml">Tests</div><div class="mv" style="color:#16a34a">11/11</div></div>
+    <div class="mb"><div class="ml">RS</div><div class="mv" style="color:#2563eb">24</div></div>
+    <div class="mb"><div class="ml">EPS%</div><div class="mv" style="color:#16a34a">+60.0%</div></div>
+    <div class="mb"><div class="ml">Sales%</div><div class="mv" style="color:#16a34a">+33.0%</div></div>
+    <div class="mb"><div class="ml">Inst Own</div><div class="mv" style="color:#7c3aed">83.0%</div></div>
+    <div class="mb"><div class="ml">Price</div><div class="mv">$115.09</div></div>
+    <div class="mb"><div class="ml">52w High</div><div class="mv">$130.00</div></div>
+    <div class="mb"><div class="ml">52w Low</div><div class="mv">$33.60</div></div>
+    <div class="mb"><div class="ml">vs 52wH</div><div class="mv" style="color:#dc2626">89%</div></div>
+    <div class="mb"><div class="ml">Volume</div><div class="mv">0.3M</div></div>
+  </div>
+  <div class="rs"><div class="rt">CANSLIM Rules</div><div class="rp"><span class="pill-pass">SMA50>150</span><span class="pill-pass">SMA150>200</span><span class="pill-pass">52wkSpan</span><span class="pill-pass">RS</span><span class="pill-pass">Liquidity</span><span class="pill-pass">Near52wH</span><span class="pill-pass">PrevClose</span><span class="pill-pass">SMA200up</span><span class="pill-pass">InstOwn</span><span class="pill-pass">>SMA50</span><span class="pill-pass">Sales</span><span class="pill-pass">EPS</span></div></div>
+  <div class="ag">
+    <div class="ab bull"><b class="ai">+</b><div><div class="al">Bull Case</div><div class="at">Excellent institutional sponsorship despite an under-discovered RS and very low trading volume points to smart money quietly accumulating positions in this small-cap leader. Consistent EPS and sales growth provide a solid fundamental base for future appreciation. </div></div></div>
+    <div class="ab bear"><b class="ai">-</b><div><div class="al">Key Risk</div><div class="at">Low trading volume can lead to high volatility and potentially challenging liquidity during sharp market downturns.</div></div></div>
+    <div class="ab cat"><b class="ai">*</b><div><div class="al">Catalyst</div><div class="at">Increased analyst coverage, strong earnings beat, potential M&A interest given its niche leadership.</div></div></div>
+  </div>
+  <div class="convrow">
+    <span class="convlbl">Conviction</span>
+    <div class="convbar"><div style="width:90%;background:#16a34a;height:100%;border-radius:3px"></div></div>
+    <span class="convnum">9/10</span>
+  </div>
+</div>
+<div class="card" data-verdict="BUY" data-models="gemini">
+  <div class="model-badge-row"><span class="mbadge mgemini">&#9670; Gemini pick</span></div>
+  <div class="ch">
+    <div class="cl">
+      <div class="rn">#7</div>
+      <div><div class="tn">ECO</div><div class="tl">Environmental Tech / Cleantech Infrastructure</div></div>
+    </div>
+    <div class="cr">
+      <span class="vc" style="color:#2563eb;background:#2563eb18;border:1.5px solid #2563eb40">BUY</span>
+      <div class="ul" style="color:#16a34a">+130% target</div>
+    </div>
+  </div>
+  <div class="mg">
+    <div class="mb"><div class="ml">N-Value</div><div class="mv" style="color:#d97706">8,190</div><div class="nb"><div style="width:100%;background:#d97706;height:100%;border-radius:2px"></div></div></div>
+    <div class="mb"><div class="ml">Lwowski</div><div class="mv" style="color:#7c3aed">19,315</div></div>
+    <div class="mb"><div class="ml">Tests</div><div class="mv" style="color:#16a34a">11/11</div></div>
+    <div class="mb"><div class="ml">RS</div><div class="mv" style="color:#2563eb">27</div></div>
+    <div class="mb"><div class="ml">EPS%</div><div class="mv" style="color:#16a34a">+330.0%</div></div>
+    <div class="mb"><div class="ml">Sales%</div><div class="mv" style="color:#16a34a">+49.0%</div></div>
+    <div class="mb"><div class="ml">Inst Own</div><div class="mv" style="color:#7c3aed">21.0%</div></div>
+    <div class="mb"><div class="ml">Price</div><div class="mv">$49.01</div></div>
+    <div class="mb"><div class="ml">52w High</div><div class="mv">$55.00</div></div>
+    <div class="mb"><div class="ml">52w Low</div><div class="mv">$17.76</div></div>
+    <div class="mb"><div class="ml">vs 52wH</div><div class="mv" style="color:#dc2626">89%</div></div>
+    <div class="mb"><div class="ml">Volume</div><div class="mv">0.3M</div></div>
+  </div>
+  <div class="rs"><div class="rt">CANSLIM Rules</div><div class="rp"><span class="pill-pass">SMA50>150</span><span class="pill-pass">SMA150>200</span><span class="pill-pass">52wkSpan</span><span class="pill-pass">RS</span><span class="pill-pass">Liquidity</span><span class="pill-pass">Near52wH</span><span class="pill-pass">PrevClose</span><span class="pill-pass">SMA200up</span><span class="pill-pass">InstOwn</span><span class="pill-pass">>SMA50</span><span class="pill-pass">Sales</span><span class="pill-pass">EPS</span></div></div>
+  <div class="ag">
+    <div class="ab bull"><b class="ai">+</b><div><div class="al">Bull Case</div><div class="at">Explosive EPS growth (+330%) combined with an under-discovered RS and relatively low institutional ownership positions it for substantial future institutional build-up. Its small-cap nature offers significant room to run as market awareness increases. </div></div></div>
+    <div class="ab bear"><b class="ai">-</b><div><div class="al">Key Risk</div><div class="at">The low institutional ownership means less 'smart money' validation, and extreme EPS growth may be difficult to sustain long-term.</div></div></div>
+    <div class="ab cat"><b class="ai">*</b><div><div class="al">Catalyst</div><div class="at">Major contract wins, increased institutional buying interest, industry-specific tailwinds for environmental solutions.</div></div></div>
+  </div>
+  <div class="convrow">
+    <span class="convlbl">Conviction</span>
+    <div class="convbar"><div style="width:80%;background:#16a34a;height:100%;border-radius:3px"></div></div>
+    <span class="convnum">8/10</span>
+  </div>
+</div>
+<div class="card" data-verdict="BUY" data-models="gemini">
+  <div class="model-badge-row"><span class="mbadge mgemini">&#9670; Gemini pick</span></div>
+  <div class="ch">
+    <div class="cl">
+      <div class="rn">#8</div>
+      <div><div class="tn">FN</div><div class="tl">Enterprise Software / Niche SaaS</div></div>
+    </div>
+    <div class="cr">
+      <span class="vc" style="color:#2563eb;background:#2563eb18;border:1.5px solid #2563eb40">BUY</span>
+      <div class="ul" style="color:#16a34a">+90% target</div>
+    </div>
+  </div>
+  <div class="mg">
+    <div class="mb"><div class="ml">N-Value</div><div class="mv" style="color:#d97706">8,190</div><div class="nb"><div style="width:100%;background:#d97706;height:100%;border-radius:2px"></div></div></div>
+    <div class="mb"><div class="ml">Lwowski</div><div class="mv" style="color:#7c3aed">14,335</div></div>
+    <div class="mb"><div class="ml">Tests</div><div class="mv" style="color:#16a34a">11/11</div></div>
+    <div class="mb"><div class="ml">RS</div><div class="mv" style="color:#2563eb">17</div></div>
+    <div class="mb"><div class="ml">EPS%</div><div class="mv" style="color:#16a34a">+31.0%</div></div>
+    <div class="mb"><div class="ml">Sales%</div><div class="mv" style="color:#16a34a">+36.0%</div></div>
+    <div class="mb"><div class="ml">Inst Own</div><div class="mv" style="color:#7c3aed">109.0%</div></div>
+    <div class="mb"><div class="ml">Price</div><div class="mv">$549.70</div></div>
+    <div class="mb"><div class="ml">52w High</div><div class="mv">$616.00</div></div>
+    <div class="mb"><div class="ml">52w Low</div><div class="mv">$171.03</div></div>
+    <div class="mb"><div class="ml">vs 52wH</div><div class="mv" style="color:#dc2626">89%</div></div>
+    <div class="mb"><div class="ml">Volume</div><div class="mv">0.5M</div></div>
+  </div>
+  <div class="rs"><div class="rt">CANSLIM Rules</div><div class="rp"><span class="pill-pass">SMA50>150</span><span class="pill-pass">SMA150>200</span><span class="pill-pass">52wkSpan</span><span class="pill-pass">RS</span><span class="pill-pass">Liquidity</span><span class="pill-pass">Near52wH</span><span class="pill-pass">PrevClose</span><span class="pill-pass">SMA200up</span><span class="pill-pass">InstOwn</span><span class="pill-pass">>SMA50</span><span class="pill-pass">Sales</span><span class="pill-pass">EPS</span></div></div>
+  <div class="ag">
+    <div class="ab bull"><b class="ai">+</b><div><div class="al">Bull Case</div><div class="at">The combination of extremely low relative strength (RS: 17) and exceptionally high institutional ownership (109%) suggests institutions are aggressively accumulating an unheralded leader. Strong sales growth indicates underlying business strength that has yet to be fully reflected in the stock price. </div></div></div>
+    <div class="ab bear"><b class="ai">-</b><div><div class="al">Key Risk</div><div class="at">High institutional concentration can sometimes lead to sharp drops if a major holder decides to exit their position quickly.</div></div></div>
+    <div class="ab cat"><b class="ai">*</b><div><div class="al">Catalyst</div><div class="at">Major institutional upgrades, expanded market reach for its enterprise solutions, potential for a stock split.</div></div></div>
+  </div>
+  <div class="convrow">
+    <span class="convlbl">Conviction</span>
+    <div class="convbar"><div style="width:80%;background:#16a34a;height:100%;border-radius:3px"></div></div>
+    <span class="convnum">8/10</span>
+  </div>
+</div>
+<div class="card" data-verdict="BUY" data-models="gemini">
+  <div class="model-badge-row"><span class="mbadge mgemini">&#9670; Gemini pick</span></div>
+  <div class="ch">
+    <div class="cl">
+      <div class="rn">#9</div>
+      <div><div class="tn">SQM</div><div class="tl">Lithium & Clean Energy Infrastructure</div></div>
+    </div>
+    <div class="cr">
+      <span class="vc" style="color:#2563eb;background:#2563eb18;border:1.5px solid #2563eb40">BUY</span>
+      <div class="ul" style="color:#16a34a">+85% target</div>
+    </div>
+  </div>
+  <div class="mg">
+    <div class="mb"><div class="ml">N-Value</div><div class="mv" style="color:#d97706">8,190</div><div class="nb"><div style="width:100%;background:#d97706;height:100%;border-radius:2px"></div></div></div>
+    <div class="mb"><div class="ml">Lwowski</div><div class="mv" style="color:#7c3aed">14,153</div></div>
+    <div class="mb"><div class="ml">Tests</div><div class="mv" style="color:#16a34a">11/11</div></div>
+    <div class="mb"><div class="ml">RS</div><div class="mv" style="color:#2563eb">18</div></div>
+    <div class="mb"><div class="ml">EPS%</div><div class="mv" style="color:#16a34a">+57.0%</div></div>
+    <div class="mb"><div class="ml">Sales%</div><div class="mv" style="color:#16a34a">+27.0%</div></div>
+    <div class="mb"><div class="ml">Inst Own</div><div class="mv" style="color:#7c3aed">29.0%</div></div>
+    <div class="mb"><div class="ml">Price</div><div class="mv">$77.37</div></div>
+    <div class="mb"><div class="ml">52w High</div><div class="mv">$85.00</div></div>
+    <div class="mb"><div class="ml">52w Low</div><div class="mv">$30.03</div></div>
+    <div class="mb"><div class="ml">vs 52wH</div><div class="mv" style="color:#dc2626">91%</div></div>
+    <div class="mb"><div class="ml">Volume</div><div class="mv">3.9M</div></div>
+  </div>
+  <div class="rs"><div class="rt">CANSLIM Rules</div><div class="rp"><span class="pill-pass">SMA50>150</span><span class="pill-pass">SMA150>200</span><span class="pill-pass">52wkSpan</span><span class="pill-pass">RS</span><span class="pill-pass">Liquidity</span><span class="pill-pass">Near52wH</span><span class="pill-pass">PrevClose</span><span class="pill-pass">SMA200up</span><span class="pill-pass">InstOwn</span><span class="pill-pass">>SMA50</span><span class="pill-pass">Sales</span><span class="pill-pass">EPS</span></div></div>
+  <div class="ag">
+    <div class="ab bull"><b class="ai">+</b><div><div class="al">Bull Case</div><div class="at">As a key player in lithium production, SQM is strategically positioned to benefit from the massive growth in EVs and renewable energy storage, providing a strong infrastructure backbone. Its strong EPS growth and low RS indicate a potential undervaluation relative to its long-term thematic tailwinds. </div></div></div>
+    <div class="ab bear"><b class="ai">-</b><div><div class="al">Key Risk</div><div class="at">Commodity price volatility and geopolitical factors related to mining operations can significantly impact its profitability.</div></div></div>
+    <div class="ab cat"><b class="ai">*</b><div><div class="al">Catalyst</div><div class="at">Increasing global demand for lithium, favorable supply agreements, expansion of production capacity.</div></div></div>
+  </div>
+  <div class="convrow">
+    <span class="convlbl">Conviction</span>
+    <div class="convbar"><div style="width:80%;background:#16a34a;height:100%;border-radius:3px"></div></div>
+    <span class="convnum">8/10</span>
+  </div>
+</div></div>
 <div class="foot">
   Data: <a href="http://www.canslimscreener.com/" target="_blank">canslimscreener.com</a>
-  &nbsp;·&nbsp; AI: Claude claude-sonnet-4-20250514
-  &nbsp;·&nbsp; Not financial advice.
+  &middot; Claude claude-sonnet-4-20250514 &middot; Gemini 3 Pro &middot; Not financial advice.
 </div>
 <script>
-function f(v,b){
-  document.querySelectorAll('.fb').forEach(x=>x.classList.remove('on'));
-  b.classList.add('on');
+function f(m,btn){
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
   document.querySelectorAll('.card').forEach(c=>{
-    c.style.display=v==='all'||c.dataset.verdict===v?'':'none';
+    c.style.display=m==='all'||c.dataset.models===m?'':'none';
+  });
+}
+function fv(v,btn){
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.card').forEach(c=>{
+    c.style.display=c.dataset.verdict===v?'':'none';
   });
 }
 </script>
