@@ -22,7 +22,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install playwright anthropic
+          pip install playwright anthropic google-generativeai
           playwright install chromium --with-deps
 
       - name: Run screener
