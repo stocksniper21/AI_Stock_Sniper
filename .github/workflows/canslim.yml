@@ -43,7 +43,7 @@ jobs:
           git stash pop
           git add index.html canslim_auto.py
           git commit -m "Dashboard update $(date +%Y-%m-%d)" || echo "No changes"
-          git push
+          git push --force
 
   deploy:
     needs: run
