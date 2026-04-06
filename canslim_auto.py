@@ -481,6 +481,8 @@ async def main():
     print(f"Got {len(stocks)} stocks. Top 5: {', '.join(s['ticker'] for s in stocks[:5])}")
 
     print("\nStep 2/3 - AI analysis...")
+    print(f"  Claude key set: {bool(CLAUDE_KEY)}")
+    print(f"  Gemini key set: {bool(GEMINI_KEY)}")
     print("  [Claude]")
     claude_top = analyze_claude(stocks)
     print("  [Gemini] (top 10 stocks only - free tier limit)")
