@@ -118,10 +118,16 @@ Reply with ONLY a valid JSON array, no markdown fences:
   "verdict": "STRONG BUY",
   "conviction": 9,
   "theme": "short theme label",
-  "bull_case": "2 sentences.",
-  "key_risk": "1 sentence.",
+  "bull_case": "2 sentence summary.",
+  "bull_detail": "Full fundamental analysis: revenue growth, EPS acceleration, margins, institutional accumulation, TAM, multi-bagger potential. Minimum 5 sentences with numbers.",
+  "technical_analysis": "Full technical analysis: price vs 50/150/200 SMAs, 52-week position, RS, volume, chart setup. Minimum 4 sentences.",
+  "key_risk": "1 sentence summary of biggest risk.",
+  "risk_detail": "Full risk analysis: bear case, what could go wrong, metrics to watch, sector/valuation risks. Minimum 4 sentences.",
   "price_target_pct": 85,
-  "catalyst": "next specific catalyst"
+  "catalyst": "next specific catalyst.",
+  "catalyst_detail": "Catalyst timeline, expected impact, what to watch for. Minimum 3 sentences.",
+  "price_target_low": 40,
+  "price_target_high": 120
 }}]
 verdict: STRONG BUY / BUY / SPECULATIVE BUY | conviction: 1-10 | price_target_pct: % upside 1-2 years"""
 
@@ -284,9 +290,16 @@ def build_cards(merged):
         ticker   = s.get("ticker","?")
         rank     = s.get("rank","?")
         theme    = s.get("theme","")
-        bull     = s.get("bull_case","")
-        risk     = s.get("key_risk","")
-        catalyst = s.get("catalyst","")
+        bull               = s.get("bull_case","")
+        bull_detail        = s.get("bull_detail","No additional detail available.")
+        technical_analysis = s.get("technical_analysis","No technical analysis available.")
+        risk               = s.get("key_risk","")
+        risk_detail        = s.get("risk_detail","No additional detail available.")
+        catalyst           = s.get("catalyst","")
+        catalyst_detail    = s.get("catalyst_detail","No additional detail available.")
+        price_target_pct   = s.get("price_target_pct", up)
+        price_target_low   = s.get("price_target_low", max(0, up-30))
+        price_target_high  = s.get("price_target_high", up+30)
 
         cards += f"""
 <div class="card" data-verdict="{verdict}" data-models="{models}">
@@ -316,11 +329,13 @@ def build_cards(merged):
     <div class="mb"><div class="ml">Volume</div><div class="mv">{vol/1e6:.1f}M</div></div>
   </div>
   <div class="rs"><div class="rt">CANSLIM Rules</div><div class="rp">{pills}</div></div>
-  <div class="ag">
-    <div class="ab bull"><b class="ai">+</b><div><div class="al">Bull Case</div><div class="at">{bull}</div></div></div>
-    <div class="ab bear"><b class="ai">-</b><div><div class="al">Key Risk</div><div class="at">{risk}</div></div></div>
-    <div class="ab cat"><b class="ai">*</b><div><div class="al">Catalyst</div><div class="at">{catalyst}</div></div></div>
-  </div>
+   <div class="ag">
+     <div class="ab bull"><b class="ai">+</b><div style="flex:1"><div class="al">Bull Case</div><div class="at">{bull}</div><div class="xbtn" onclick="xd(this)">+ full fundamental analysis</div><div class="xbox" style="display:none">{bull_detail}</div></div></div>
+     <div class="ab" style="background:#f5f3ff;border-color:#ddd6fe"><b class="ai" style="color:#7c3aed">~</b><div style="flex:1"><div class="al" style="color:#7c3aed">Technical Analysis</div><div class="xbtn" onclick="xd(this)">+ view chart analysis</div><div class="xbox" style="display:none">{technical_analysis}</div></div></div>
+     <div class="ab bear"><b class="ai">-</b><div style="flex:1"><div class="al">Key Risk</div><div class="at">{risk}</div><div class="xbtn" onclick="xd(this)">+ full risk analysis</div><div class="xbox" style="display:none">{risk_detail}</div></div></div>
+     <div class="ab cat"><b class="ai">*</b><div style="flex:1"><div class="al">Catalyst</div><div class="at">{catalyst}</div><div class="xbtn" onclick="xd(this)">+ catalyst detail</div><div class="xbox" style="display:none">{catalyst_detail}</div></div></div>
+   </div>
+   <div class="prr"><span class="prl">Price target range:</span><span class="prlo">{price_target_low:+}%</span><span class="prsp">to</span><span class="prhi">{price_target_high:+}%</span><span class="prmi">mid: {price_target_pct:+}%</span></div>
   <div class="convrow">
     <span class="convlbl">Conviction</span>
     <div class="convbar"><div style="width:{conv*10}%;background:{cc};height:100%;border-radius:3px"></div></div>
@@ -409,6 +424,15 @@ body{background:#f0f2f5;color:#111827;font-family:Inter,sans-serif}
 .convbar{flex:1;height:5px;background:#f3f4f6;border-radius:3px;overflow:hidden}
 .convnum{font-family:monospace;font-size:12px;color:#374151;font-weight:600}
 .foot{padding:20px 32px;text-align:center;font-size:11px;color:#9ca3af;border-top:1px solid #e5e7eb;background:#fff;margin-top:8px}
+.xbtn{font-size:11px;color:#2563eb;cursor:pointer;margin-top:6px;font-weight:500;display:inline-block}
+.xbtn:hover{text-decoration:underline}
+.xbox{font-size:12px;line-height:1.7;color:#374151;margin-top:8px;padding-top:8px;border-top:1px dashed #e5e7eb}
+.prr{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#f9fafb;border-radius:8px;margin-bottom:14px;flex-wrap:wrap}
+.prl{font-size:11px;color:#6b7280;font-weight:500}
+.prlo{font-family:monospace;font-size:13px;font-weight:700;color:#dc2626}
+.prsp{font-size:11px;color:#9ca3af}
+.prhi{font-family:monospace;font-size:13px;font-weight:700;color:#16a34a}
+.prmi{font-family:monospace;font-size:12px;color:#6b7280;margin-left:auto;background:#fff;padding:2px 8px;border-radius:4px;border:1px solid #e5e7eb}
 .foot a{color:#2563eb;text-decoration:none;font-weight:500}
 @media(max-width:640px){.grid{grid-template-columns:1fr;padding:0 16px 28px}.mg{grid-template-columns:repeat(3,1fr)}.sum{grid-template-columns:repeat(2,1fr);padding:16px}.header,.toolbar,.both-box{padding-left:16px;padding-right:16px}}
 """
@@ -452,6 +476,7 @@ body{background:#f0f2f5;color:#111827;font-family:Inter,sans-serif}
   &middot; Claude claude-sonnet-4-20250514 &middot; Gemini 3 Pro &middot; Not financial advice.
 </div>
 <script>
+function xd(btn){{const b=btn.nextElementSibling;if(b.style.display==="none"){{b.style.display="block";btn.textContent=btn.textContent.replace("+ ","- ");}}else{{b.style.display="none";btn.textContent=btn.textContent.replace("- ","+ ");}}}}
 function f(m,btn){{
   document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));
   btn.classList.add('on');
