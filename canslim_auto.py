@@ -331,7 +331,7 @@ def build_cards(merged):
   <div class="rs"><div class="rt">CANSLIM Rules</div><div class="rp">{pills}</div></div>
    <div class="ag">
      <div class="ab bull"><b class="ai">+</b><div style="flex:1"><div class="al">Bull Case</div><div class="at">{bull}</div><div class="xbtn" onclick="xd(this)">+ full fundamental analysis</div><div class="xbox" style="display:none">{bull_detail}</div></div></div>
-     <div class="ab" style="background:#f5f3ff;border-color:#ddd6fe"><b class="ai" style="color:#7c3aed">~</b><div style="flex:1"><div class="al" style="color:#7c3aed">Technical Analysis</div><div class="xbtn" onclick="xd(this)">+ view chart analysis</div><div class="xbox" style="display:none">{technical_analysis}</div></div></div>
+     <div class="ab" style="background:#13102a;border-color:#ddd6fe"><b class="ai" style="color:#7c3aed">~</b><div style="flex:1"><div class="al" style="color:#7c3aed">Technical Analysis</div><div class="xbtn" onclick="xd(this)">+ view chart analysis</div><div class="xbox" style="display:none">{technical_analysis}</div></div></div>
      <div class="ab bear"><b class="ai">-</b><div style="flex:1"><div class="al">Key Risk</div><div class="at">{risk}</div><div class="xbtn" onclick="xd(this)">+ full risk analysis</div><div class="xbox" style="display:none">{risk_detail}</div></div></div>
      <div class="ab cat"><b class="ai">*</b><div style="flex:1"><div class="al">Catalyst</div><div class="at">{catalyst}</div><div class="xbtn" onclick="xd(this)">+ catalyst detail</div><div class="xbox" style="display:none">{catalyst_detail}</div></div></div>
    </div>
@@ -413,7 +413,7 @@ body{background:#080d1a;color:#e2e8f0;font-family:'Outfit',sans-serif}
 .mg{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;margin-bottom:12px}
 .mb{background:#080d1a;border:1px solid #1a2540;border-radius:7px;padding:8px 9px}
 .ml{font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-bottom:3px}
-.mv{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:#e2e8f0}
+.mv{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:600;color:#e2e8f0}
 .nb{height:2px;background:#1a2540;border-radius:1px;margin-top:3px;overflow:hidden}
 .rs{margin-bottom:12px}
 .rt{font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:.07em;font-weight:700;margin-bottom:6px}
@@ -428,9 +428,9 @@ body{background:#080d1a;color:#e2e8f0;font-family:'Outfit',sans-serif}
 .tech-row{background:#13102a;border-left:2px solid #8b5cf6;display:flex;gap:12px;padding:12px 14px;border-radius:0 10px 10px 0;align-items:flex-start}
 .ai{font-size:15px;font-weight:700;width:18px;flex-shrink:0;margin-top:1px}
 .bull .ai{color:#10b981}.bear .ai{color:#f43f5e}.cat .ai{color:#3b82f6}.tech-row .ai{color:#8b5cf6}
-.al{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
+.al{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
 .bull .al{color:#10b981}.bear .al{color:#f43f5e}.cat .al{color:#3b82f6}.tech-row .al{color:#8b5cf6}
-.at{font-size:14px;line-height:1.7;color:#cbd5e1}
+.at{font-size:16px;line-height:1.7;color:#cbd5e1}
 .convrow{display:flex;align-items:center;gap:8px;padding-top:10px;border-top:1px solid #1a2540}
 .convlbl{font-size:11px;color:#475569;font-weight:500;white-space:nowrap}
 .convbar{flex:1;height:3px;background:#1a2540;border-radius:2px;overflow:hidden}
@@ -439,7 +439,7 @@ body{background:#080d1a;color:#e2e8f0;font-family:'Outfit',sans-serif}
 .foot a{color:#00d4ff;text-decoration:none;font-weight:500}
 .xbtn{font-size:12px;color:#00d4ff;cursor:pointer;margin-top:6px;font-weight:600;display:inline-block}
 .xbtn:hover{color:#67e8f9}
-.xbox{font-size:13px;line-height:1.8;color:#94a3b8;margin-top:8px;padding-top:8px;border-top:1px dashed #1e2d45}
+.xbox{font-size:15px;line-height:1.8;color:#94a3b8;margin-top:8px;padding-top:8px;border-top:1px dashed #1e2d45}
 .prr{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#080d1a;border-radius:8px;margin-bottom:12px;border:1px solid #1a2540;flex-wrap:wrap}
 .prl{font-size:11px;color:#64748b;font-weight:500}
 .prlo{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;color:#f43f5e}
