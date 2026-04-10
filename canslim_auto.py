@@ -192,7 +192,7 @@ def analyze_gemini(stocks):
     response = None
     for attempt in range(3):
         try:
-            response = client_gemini.models.generate_content(model="gemini-2.0-flash-lite", contents=build_prompt(subset))
+            response = client_gemini.models.generate_content(model="gemini-2.0-flash-lite-001", contents=build_prompt(subset))
             break
         except Exception as e:
             print(f"  Gemini attempt {attempt+1}/3 failed: {str(e)[:80]}")
