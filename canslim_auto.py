@@ -188,7 +188,19 @@ def analyze_gemini(stocks):
     subset = stocks[:50]
     print(f"  Sending top {len(subset)} stocks to Gemini...")
     t0 = time.time()
-    response = client_gemini.models.generate_content(model="gemini-2.5-flash", contents=build_prompt(subset))
+    import time as _t
+    response = None
+    for attempt in range(3):
+        try:
+            response = client_gemini.models.generate_content(model="gemini-2.5-flash", contents=build_prompt(subset))
+            break
+        except Exception as e:
+            print(f"  Gemini attempt {attempt+1}/3 failed: {str(e)[:80]}")
+            if attempt < 2:
+                _t.sleep(45)
+            else:
+                print("  Gemini gave up after 3 attempts — returning empty")
+                return []
     print(f"  Gemini done in {time.time()-t0:.1f}s")
     result = parse_picks(response.text, stocks)
     print(f"  Gemini picks (>=7): {len(result)}")
