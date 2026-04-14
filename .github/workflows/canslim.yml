@@ -2,7 +2,7 @@ name: CANSLIM Screener
 
 on:
   schedule:
-    - cron: '0 2 * * 0,3,5'
+    - cron: '0 4 * * 0,2,4'
   workflow_dispatch:
 
 permissions:
