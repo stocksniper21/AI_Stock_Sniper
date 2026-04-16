@@ -1,1 +1,460 @@
-<html><body><h1>No picks.</h1></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CANSLIM AI - April 16, 2026  06:08</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#080d1a;color:#e2e8f0;font-family:'Outfit',sans-serif}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-thumb{background:#1a2540;border-radius:3px}
+.header{background:#0c1221;border-bottom:1px solid #1a2540;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100}
+.lw{display:flex;align-items:center;gap:12px}
+.lm{width:34px;height:34px;background:#00d4ff;border-radius:7px;display:flex;align-items:center;justify-content:center;color:#080d1a;font-weight:700;font-size:11px;font-family:'JetBrains Mono',monospace}
+.lt{font-size:15px;font-weight:700;color:#e2e8f0;letter-spacing:-.02em}.lt span{color:#00d4ff}
+.hm{font-size:12px;color:#64748b;text-align:right;line-height:1.8}.hm strong{color:#e2e8f0}
+.ld{display:inline-block;width:6px;height:6px;background:#10b981;border-radius:50%;margin-right:5px;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.both-box{margin:16px 32px;background:#1a1000;border:1px solid #f59e0b40;border-radius:12px;padding:13px 18px;display:flex;align-items:center;gap:12px}
+.both-label{font-size:11px;font-weight:700;color:#f59e0b;text-transform:uppercase;letter-spacing:.08em;white-space:nowrap}
+.sum{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:16px 32px}
+.sc{background:#0c1221;border:1px solid #1a2540;border-radius:12px;padding:14px 18px;position:relative;overflow:hidden}
+.sc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.sc:nth-child(1)::before{background:#00d4ff}
+.sc:nth-child(2)::before{background:#f59e0b}
+.sc:nth-child(3)::before{background:#10b981}
+.sc:nth-child(4)::before{background:#8b5cf6}
+.sv{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;margin-bottom:3px}
+.sl{font-size:11px;color:#64748b;text-transform:uppercase;letter-spacing:.07em;font-weight:600}
+.ss{font-size:11px;color:#334155;margin-top:2px}
+.toolbar{padding:0 32px 14px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.tbl{font-size:12px;color:#64748b;margin-right:4px}
+.fb{padding:5px 14px;border-radius:6px;border:1px solid #1a2540;background:transparent;color:#64748b;font-size:12px;font-weight:500;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .15s}
+.fb:hover{border-color:#00d4ff40;color:#00d4ff}.fb.on{background:#00d4ff20;color:#00d4ff;border-color:#00d4ff60}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(560px,1fr));gap:14px;padding:0 32px 40px}
+.card{background:#0c1221;border:1px solid #1a2540;border-radius:16px;overflow:hidden;transition:border-color .2s}
+.card:hover{border-color:#00d4ff30}
+.card-stripe{height:3px}
+.card-inner{padding:18px}
+.model-badge-row{margin-bottom:12px}
+.mbadge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:5px;font-size:11px;font-weight:700;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.04em}
+.mboth{background:#f59e0b15;color:#f59e0b;border:1px solid #f59e0b30}
+.mclaude{background:#00d4ff10;color:#00d4ff;border:1px solid #00d4ff30}
+.mgemini{background:#10b98115;color:#34d399;border:1px solid #10b98130}
+.ch{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px}
+.cl{display:flex;align-items:center;gap:12px}
+.rn{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:#475569;background:#080d1a;border:1px solid #1a2540;border-radius:5px;padding:3px 8px}
+.tn{font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:700;color:#f1f5f9;line-height:1}
+.tl{font-size:12px;color:#64748b;margin-top:4px}
+.cr{text-align:right}
+.vc{font-size:11px;font-weight:700;padding:4px 10px;border-radius:5px;display:inline-block;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.04em}
+.ul{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;margin-top:5px}
+.mg{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;margin-bottom:12px}
+.mb{background:#080d1a;border:1px solid #1a2540;border-radius:7px;padding:8px 9px}
+.ml{font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-bottom:3px}
+.mv{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:600;color:#e2e8f0}
+.nb{height:2px;background:#1a2540;border-radius:1px;margin-top:3px;overflow:hidden}
+.rs{margin-bottom:12px}
+.rt{font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:.07em;font-weight:700;margin-bottom:6px}
+.rp{display:flex;flex-wrap:wrap;gap:3px}
+.pill-pass{font-size:10px;padding:2px 7px;border-radius:4px;font-weight:600;font-family:'JetBrains Mono',monospace;background:#10b98115;color:#34d399;border:1px solid #10b98125}
+.pill-fail{font-size:10px;padding:2px 7px;border-radius:4px;font-weight:600;font-family:'JetBrains Mono',monospace;background:#1a2540;color:#334155;border:1px solid #1a2540}
+.ag{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.ab{display:flex;gap:12px;padding:12px 14px;border-radius:0 10px 10px 0;align-items:flex-start;border-left:2px solid;border-right:none;border-top:none;border-bottom:none}
+.bull{background:#0f2318;border-left-color:#10b981}
+.bear{background:#1f0d12;border-left-color:#f43f5e}
+.cat{background:#0d1228;border-left-color:#3b82f6}
+.tech-row{background:#13102a;border-left:2px solid #8b5cf6;display:flex;gap:12px;padding:12px 14px;border-radius:0 10px 10px 0;align-items:flex-start}
+.ai{font-size:15px;font-weight:700;width:18px;flex-shrink:0;margin-top:1px}
+.bull .ai{color:#10b981}.bear .ai{color:#f43f5e}.cat .ai{color:#3b82f6}.tech-row .ai{color:#8b5cf6}
+.al{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
+.bull .al{color:#10b981}.bear .al{color:#f43f5e}.cat .al{color:#3b82f6}.tech-row .al{color:#8b5cf6}
+.at{font-size:16px;line-height:1.7;color:#cbd5e1}
+.convrow{display:flex;align-items:center;gap:8px;padding-top:10px;border-top:1px solid #1a2540}
+.convlbl{font-size:11px;color:#475569;font-weight:500;white-space:nowrap}
+.convbar{flex:1;height:3px;background:#1a2540;border-radius:2px;overflow:hidden}
+.convnum{font-family:'JetBrains Mono',monospace;font-size:12px;color:#475569;font-weight:600}
+.foot{padding:20px 32px;text-align:center;font-size:12px;color:#334155;border-top:1px solid #1a2540;background:#0c1221;margin-top:8px}
+.foot a{color:#00d4ff;text-decoration:none;font-weight:500}
+.xbtn{font-size:12px;color:#00d4ff;cursor:pointer;margin-top:6px;font-weight:600;display:inline-block}
+.xbtn:hover{color:#67e8f9}
+.xbox{font-size:15px;line-height:1.8;color:#94a3b8;margin-top:8px;padding-top:8px;border-top:1px dashed #1e2d45}
+.prr{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#080d1a;border-radius:8px;margin-bottom:12px;border:1px solid #1a2540;flex-wrap:wrap}
+.prl{font-size:11px;color:#64748b;font-weight:500}
+.prlo{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;color:#f43f5e}
+.prsp{font-size:11px;color:#334155}
+.prhi{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;color:#10b981}
+.prmi{font-family:'JetBrains Mono',monospace;font-size:11px;color:#475569;margin-left:auto;background:#0c1221;padding:2px 8px;border-radius:4px;border:1px solid #1a2540}
+@media(max-width:640px){.grid{grid-template-columns:1fr;padding:0 16px 28px}.mg{grid-template-columns:repeat(3,1fr)}.sum{grid-template-columns:repeat(2,1fr);padding:16px}.header,.toolbar,.both-box{padding-left:16px;padding-right:16px}}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="lw"><div class="lm">CS</div><div class="lt">CAN<span>SLIM</span> AI Screener</div></div>
+  <div class="hm"><span class="ld"></span>Claude + Gemini · canslimscreener.com<br><strong>50</strong> stocks screened · April 16, 2026  06:08</div>
+</header>
+<div class="both-box">
+  <span style="font-size:20px">&#11088;</span>
+  <span class="both-label">Both AIs agree on:</span>
+  <span style="background:#fef3c7;color:#92400e;border:1px solid #fcd34d;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;font-family:monospace">LASR</span>
+</div>
+<div class="sum">
+  <div class="sc"><div class="sv" style="color:#2563eb">8</div><div class="sl">Unique picks</div><div class="ss">1 agreed by both</div></div>
+  <div class="sc"><div class="sv" style="color:#d97706">8,187</div><div class="sl">Avg N-Value</div><div class="ss">max 8,190</div></div>
+  <div class="sc"><div class="sv" style="color:#16a34a">+106.0%</div><div class="sl">Avg EPS Growth</div><div class="ss">quarterly YoY</div></div>
+  <div class="sc"><div class="sv" style="color:#7c3aed">+57%</div><div class="sl">Avg AI Upside</div><div class="ss">1-2 year target</div></div>
+</div>
+<div class="toolbar">
+  <span class="tbl">Filter:</span>
+  <button class="fb on" onclick="f('all',this)">All picks</button>
+  <button class="fb" onclick="f('both',this)">Both AIs &#11088;</button>
+  <button class="fb" onclick="f('claude',this)">Claude only</button>
+  <button class="fb" onclick="f('gemini',this)">Gemini only</button>
+  <button class="fb" onclick="fv('STRONG BUY',this)">Strong Buy</button>
+</div>
+<div class="grid" id="grid">
+<div class="card" data-verdict="STRONG BUY" data-models="both">
+  <div class="model-badge-row"><span class="mbadge mboth">&#9733; Claude + Gemini &nbsp;<span style="opacity:.7;font-size:9px">Claude:8/10 · Gemini:8/10</span></span></div>
+  <div class="ch">
+    <div class="cl">
+      <div class="rn">#1</div>
+      <div><div class="tn">LASR</div><div class="tl">AI/Data Center Infrastructure</div></div>
+    </div>
+    <div class="cr">
+      <span class="vc" style="color:#16a34a;background:#16a34a18;border:1.5px solid #16a34a40">STRONG BUY</span>
+      <div class="ul" style="color:#16a34a">+50% target</div>
+    </div>
+  </div>
+  <div class="mg">
+    <div class="mb"><div class="ml">N-Value</div><div class="mv" style="color:#d97706">8,190</div><div class="nb"><div style="width:100%;background:#d97706;height:100%;border-radius:2px"></div></div></div>
+    <div class="mb"><div class="ml">Lwowski</div><div class="mv" style="color:#7c3aed">27,156</div></div>
+    <div class="mb"><div class="ml">Tests</div><div class="mv" style="color:#16a34a">11/11</div></div>
+    <div class="mb"><div class="ml">RS</div><div class="mv" style="color:#2563eb">31</div></div>
+    <div class="mb"><div class="ml">EPS%</div><div class="mv" style="color:#16a34a">+81.0%</div></div>
+    <div class="mb"><div class="ml">Sales%</div><div class="mv" style="color:#16a34a">+71.0%</div></div>
+    <div class="mb"><div class="ml">Inst Own</div><div class="mv" style="color:#7c3aed">81.0%</div></div>
+    <div class="mb"><div class="ml">Price</div><div class="mv">$63.86</div></div>
+    <div class="mb"><div class="ml">52w High</div><div class="mv">$72.00</div></div>
+    <div class="mb"><div class="ml">52w Low</div><div class="mv">$6.44</div></div>
+    <div class="mb"><div class="ml">vs 52wH</div><div class="mv" style="color:#dc2626">89%</div></div>
+    <div class="mb"><div class="ml">Volume</div><div class="mv">2.2M</div></div>
+  </div>
+  <div class="rs"><div class="rt">CANSLIM Rules</div><div class="rp"><span class="pill-pass">SMA50>150</span><span class="pill-pass">SMA150>200</span><span class="pill-pass">52wkSpan</span><span class="pill-pass">RS</span><span class="pill-pass">Liquidity</span><span class="pill-pass">Near52wH</span><span class="pill-pass">PrevClose</span><span class="pill-pass">SMA200up</span><span class="pill-pass">InstOwn</span><span class="pill-pass">>SMA50</span><span class="pill-pass">Sales</span><span class="pill-pass">EPS</span></div></div>
+   <div class="ag">
+     <div class="ab bull"><b class="ai">+</b><div style="flex:1"><div class="al">Bull Case</div><div class="at">Explosive 81% EPS growth with 71% sales acceleration and maximum CANSLIM score. Low RS of 31 indicates this momentum story is still under-discovered by the broader market.</div><div class="xbtn" onclick="xd(this)">+ full fundamental analysis</div><div class="xbox" style="display:none">nLIGHT (LASR) represents a compelling under-the-radar play on AI infrastructure with 81% EPS growth paired with accelerating 71% sales growth, achieving the maximum N-score of 8190. The low 31 Relative Strength rating suggests this story hasn't been discovered by momentum investors yet, creating significant upside potential as awareness builds. Strong 81% institutional ownership indicates smart money is already accumulating, while the stock has moved from $6.44 lows to $63.86, representing a 900%+ gain that's still building momentum. The company's laser solutions are critical for manufacturing semiconductors, fiber optic components, and industrial applications tied to AI infrastructure buildout. With 2.2M shares of volume and trading 80% above the 200-day average, the technical setup suggests continued institutional accumulation phase.</div></div></div>
+     <div class="ab" style="background:#13102a;border-color:#ddd6fe"><b class="ai" style="color:#7c3aed">~</b><div style="flex:1"><div class="al" style="color:#7c3aed">Technical Analysis</div><div class="xbtn" onclick="xd(this)">+ view chart analysis</div><div class="xbox" style="display:none">LASR exhibits classic early-stage breakout characteristics with the stock up 80% from its 200-day moving average but showing a relatively low 31 RS rating, suggesting the move hasn't attracted broad momentum following yet. Volume of 2.2M shares indicates institutional interest without retail speculation. At $63.86, the stock is 11% below its $72 52-week high, showing constructive consolidation after the massive run from $6.44 lows. The technical setup suggests this could be in the early innings of institutional accumulation before broader market recognition drives the next leg higher.</div></div></div>
+     <div class="ab bear"><b class="ai">-</b><div style="flex:1"><div class="al">Key Risk</div><div class="at">Semiconductor equipment cyclicality and potential slowdown in industrial laser demand.</div><div class="xbtn" onclick="xd(this)">+ full risk analysis</div><div class="xbox" style="display:none">The biggest risk is nLIGHT's exposure to cyclical semiconductor equipment and industrial markets that can experience sharp demand fluctuations. Any slowdown in chip manufacturing or industrial capex could significantly impact laser demand and cause multiple compression. The company also faces competition from larger players and potential customer concentration risks. Given the 900%+ run from lows, technical damage on any earnings miss could be severe as momentum investors exit positions quickly.</div></div></div>
+     <div class="ab cat"><b class="ai">*</b><div style="flex:1"><div class="al">Catalyst</div><div class="at">Semiconductor equipment recovery acceleration</div><div class="xbtn" onclick="xd(this)">+ catalyst detail</div><div class="xbox" style="display:none">The key catalyst is continued recovery in semiconductor equipment spending as chip manufacturers expand capacity for AI chips. This should drive laser demand through 2025 as fabs ramp production. Watch for quarterly updates on equipment orders and guidance raises as the semiconductor cycle strengthens, which could drive LASR toward $95-100 range.</div></div></div>
+   </div>
+   <div class="prr"><span class="prl">Price target range:</span><span class="prlo">+85%</span><span class="prsp">to</span><span class="prhi">+105%</span><span class="prmi">mid: +50%</span></div>
+  <div class="convrow">
+    <span class="convlbl">Conviction</span>
+    <div class="convbar"><div style="width:80%;background:#16a34a;height:100%;border-radius:3px"></div></div>
+    <span class="convnum">8/10</span>
+  </div>
+</div>
+<div class="card" data-verdict="STRONG BUY" data-models="claude">
+  <div class="model-badge-row"><span class="mbadge mclaude">&#9632; Claude pick</span></div>
+  <div class="ch">
+    <div class="cl">
+      <div class="rn">#2</div>
+      <div><div class="tn">AAOI</div><div class="tl">AI/Data Center Optics</div></div>
+    </div>
+    <div class="cr">
+      <span class="vc" style="color:#16a34a;background:#16a34a18;border:1.5px solid #16a34a40">STRONG BUY</span>
+      <div class="ul" style="color:#16a34a">+45% target</div>
+    </div>
+  </div>
+  <div class="mg">
+    <div class="mb"><div class="ml">N-Value</div><div class="mv" style="color:#d97706">8,190</div><div class="nb"><div style="width:100%;background:#d97706;height:100%;border-radius:2px"></div></div></div>
+    <div class="mb"><div class="ml">Lwowski</div><div class="mv" style="color:#7c3aed">50,217</div></div>
+    <div class="mb"><div class="ml">Tests</div><div class="mv" style="color:#16a34a">11/11</div></div>
+    <div class="mb"><div class="ml">RS</div><div class="mv" style="color:#2563eb">72</div></div>
+    <div class="mb"><div class="ml">EPS%</div><div class="mv" style="color:#16a34a">+99.0%</div></div>
+    <div class="mb"><div class="ml">Sales%</div><div class="mv" style="color:#16a34a">+34.0%</div></div>
+    <div class="mb"><div class="ml">Inst Own</div><div class="mv" style="color:#7c3aed">67.0%</div></div>
+    <div class="mb"><div class="ml">Price</div><div class="mv">$97.42</div></div>
+    <div class="mb"><div class="ml">52w High</div><div class="mv">$127.00</div></div>
+    <div class="mb"><div class="ml">52w Low</div><div class="mv">$10.05</div></div>
+    <div class="mb"><div class="ml">vs 52wH</div><div class="mv" style="color:#dc2626">77%</div></div>
+    <div class="mb"><div class="ml">Volume</div><div class="mv">7.6M</div></div>
+  </div>
+  <div class="rs"><div class="rt">CANSLIM Rules</div><div class="rp"><span class="pill-pass">SMA50>150</span><span class="pill-pass">SMA150>200</span><span class="pill-pass">52wkSpan</span><span class="pill-pass">RS</span><span class="pill-pass">Liquidity</span><span class="pill-pass">Near52wH</span><span class="pill-pass">PrevClose</span><span class="pill-pass">SMA200up</span><span class="pill-pass">InstOwn</span><span class="pill-pass">>SMA50</span><span class="pill-pass">Sales</span><span class="pill-pass">EPS</span></div></div>
+   <div class="ag">
+     <div class="ab bull"><b class="ai">+</b><div style="flex:1"><div class="al">Bull Case</div><div class="at">Perfect CANSLIM stock with 99% EPS growth, 34% sales growth, and massive 800% run from lows showing institutional accumulation. AI infrastructure buildout creating multi-year tailwind for optical components.</div><div class="xbtn" onclick="xd(this)">+ full fundamental analysis</div><div class="xbox" style="display:none">Applied Optoelectronics is perfectly positioned for the AI infrastructure boom with 99% EPS acceleration and 34% sales growth while maintaining the maximum N-score of 8190. The stock has demonstrated institutional support with 67% ownership and massive volume of 7.6M shares, indicating smart money accumulation. Trading 160% above its 200-day moving average shows incredible momentum, while the 800%+ move from $10.05 lows to current $97.42 suggests this is in early stages of a multi-bagger move. The company's optical transceivers and components are critical infrastructure for data centers and AI training facilities, with hyperscaler demand driving a multi-year growth cycle. At current levels near $97, still 23% below the $127 high, there's room for continuation with strong institutional backing.</div></div></div>
+     <div class="ab" style="background:#13102a;border-color:#ddd6fe"><b class="ai" style="color:#7c3aed">~</b><div style="flex:1"><div class="al" style="color:#7c3aed">Technical Analysis</div><div class="xbtn" onclick="xd(this)">+ view chart analysis</div><div class="xbox" style="display:none">AAOI shows textbook breakout characteristics with the stock trading 160% above its 200-day moving average, indicating powerful institutional accumulation. The 72 Relative Strength rating puts it in the top 30% of all stocks, while massive 7.6M volume confirms institutional participation. Currently at $97.42, the stock is working constructively 23% below its $127 52-week high, suggesting profit-taking has been absorbed and the stock is ready for the next leg higher. The 800%+ move from $10 lows shows this is a legitimate momentum leader with room to run.</div></div></div>
+     <div class="ab bear"><b class="ai">-</b><div style="flex:1"><div class="al">Key Risk</div><div class="at">High valuation and potential AI infrastructure spending slowdown could cause significant multiple compression.</div><div class="xbtn" onclick="xd(this)">+ full risk analysis</div><div class="xbox" style="display:none">The primary risk is that AAOI has already experienced an 800% run and trades at premium valuations that leave little room for execution errors. Any slowdown in hyperscaler capex or AI infrastructure spending could cause the stock to give back significant gains quickly. The optical component space is highly cyclical and competitive, with Chinese competition and potential supply chain disruptions posing ongoing threats. Investors should monitor quarterly guidance closely, as any miss could trigger institutional selling given the momentum-driven nature of the stock.</div></div></div>
+     <div class="ab cat"><b class="ai">*</b><div style="flex:1"><div class="al">Catalyst</div><div class="at">Q4 earnings and 2025 guidance</div><div class="xbtn" onclick="xd(this)">+ catalyst detail</div><div class="xbox" style="display:none">The next major catalyst is Q4 earnings expected in February, where management will provide 2025 guidance amid continued AI infrastructure buildout. Strong guidance could drive the stock toward $140-150 range as institutions increase position sizes. Watch for commentary on hyperscaler demand, new product ramps, and margin expansion opportunities as the company scales production.</div></div></div>
+   </div>
+   <div class="prr"><span class="prl">Price target range:</span><span class="prlo">+120%</span><span class="prsp">to</span><span class="prhi">+150%</span><span class="prmi">mid: +45%</span></div>
+  <div class="convrow">
+    <span class="convlbl">Conviction</span>
+    <div class="convbar"><div style="width:90%;background:#16a34a;height:100%;border-radius:3px"></div></div>
+    <span class="convnum">9/10</span>
+  </div>
+</div>
+<div class="card" data-verdict="STRONG BUY" data-models="claude">
+  <div class="model-badge-row"><span class="mbadge mclaude">&#9632; Claude pick</span></div>
+  <div class="ch">
+    <div class="cl">
+      <div class="rn">#3</div>
+      <div><div class="tn">ECO</div><div class="tl">Energy Services Recovery</div></div>
+    </div>
+    <div class="cr">
+      <span class="vc" style="color:#16a34a;background:#16a34a18;border:1.5px solid #16a34a40">STRONG BUY</span>
+      <div class="ul" style="color:#16a34a">+40% target</div>
+    </div>
+  </div>
+  <div class="mg">
+    <div class="mb"><div class="ml">N-Value</div><div class="mv" style="color:#d97706">8,190</div><div class="nb"><div style="width:100%;background:#d97706;height:100%;border-radius:2px"></div></div></div>
+    <div class="mb"><div class="ml">Lwowski</div><div class="mv" style="color:#7c3aed">19,315</div></div>
+    <div class="mb"><div class="ml">Tests</div><div class="mv" style="color:#16a34a">11/11</div></div>
+    <div class="mb"><div class="ml">RS</div><div class="mv" style="color:#2563eb">27</div></div>
+    <div class="mb"><div class="ml">EPS%</div><div class="mv" style="color:#16a34a">+330.0%</div></div>
+    <div class="mb"><div class="ml">Sales%</div><div class="mv" style="color:#16a34a">+49.0%</div></div>
+    <div class="mb"><div class="ml">Inst Own</div><div class="mv" style="color:#7c3aed">21.0%</div></div>
+    <div class="mb"><div class="ml">Price</div><div class="mv">$49.01</div></div>
+    <div class="mb"><div class="ml">52w High</div><div class="mv">$55.00</div></div>
+    <div class="mb"><div class="ml">52w Low</div><div class="mv">$17.76</div></div>
+    <div class="mb"><div class="ml">vs 52wH</div><div class="mv" style="color:#dc2626">89%</div></div>
+    <div class="mb"><div class="ml">Volume</div><div class="mv">0.3M</div></div>
+  </div>
+  <div class="rs"><div class="rt">CANSLIM Rules</div><div class="rp"><span class="pill-pass">SMA50>150</span><span class="pill-pass">SMA150>200</span><span class="pill-pass">52wkSpan</span><span class="pill-pass">RS</span><span class="pill-pass">Liquidity</span><span class="pill-pass">Near52wH</span><span class="pill-pass">PrevClose</span><span class="pill-pass">SMA200up</span><span class="pill-pass">InstOwn</span><span class="pill-pass">>SMA50</span><span class="pill-pass">Sales</span><span class="pill-pass">EPS</span></div></div>
+   <div class="ag">
+     <div class="ab bull"><b class="ai">+</b><div style="flex:1"><div class="al">Bull Case</div><div class="at">Massive 330% EPS acceleration with 49% sales growth and only 21% institutional ownership leaves room for significant discovery. Energy services recovery creating multi-year tailwind.</div><div class="xbtn" onclick="xd(this)">+ full fundamental analysis</div><div class="xbox" style="display:none">Okeanis Eco Tankers (ECO) shows exceptional CANSLIM characteristics with explosive 330% EPS growth and solid 49% sales growth while maintaining maximum N-score of 8190. The extremely low 21% institutional ownership suggests this shipping/energy story hasn't been discovered by institutional investors, creating massive upside potential as funds begin accumulating. The stock has moved from $17.76 lows to $49.01, a 175% gain, while trading 49% above its 200-day moving average with only 0.3M volume, indicating controlled accumulation without speculation. The tanker shipping market is benefiting from energy trade flows and improved day rates, creating a multi-year recovery cycle. With energy infrastructure investments and global trade normalization, ECO's modern eco-friendly fleet positions it perfectly for the current shipping cycle upturn.</div></div></div>
+     <div class="ab" style="background:#13102a;border-color:#ddd6fe"><b class="ai" style="color:#7c3aed">~</b><div style="flex:1"><div class="al" style="color:#7c3aed">Technical Analysis</div><div class="xbtn" onclick="xd(this)">+ view chart analysis</div><div class="xbox" style="display:none">ECO demonstrates strong momentum characteristics trading 49% above its 200-day moving average while maintaining low volume of 0.3M shares, suggesting institutional accumulation without retail participation. The 175% move from $17.76 lows to current $49.01 shows building momentum, while the stock sits 11% below its $55 52-week high, indicating room for continuation. The low 27 RS rating suggests this move hasn't attracted broad market attention yet, creating opportunity for early positioning. The controlled volume profile indicates smart money accumulation ahead of broader discovery.</div></div></div>
+     <div class="ab bear"><b class="ai">-</b><div style="flex:1"><div class="al">Key Risk</div><div class="at">Cyclical shipping market downturn and potential oversupply in tanker capacity.</div><div class="xbtn" onclick="xd(this)">+ full risk analysis</div><div class="xbox" style="display:none">The primary risk is the cyclical nature of shipping markets, where day rates can collapse quickly due to oversupply or demand destruction. ECO operates in the volatile tanker market where geopolitical changes, refinery capacity, and trade flows can dramatically impact profitability. The company also faces fuel cost inflation, regulatory changes, and potential new vessel deliveries that could pressure rates. Given the 175% run from lows, any signs of shipping cycle peaks could cause significant multiple compression.</div></div></div>
+     <div class="ab cat"><b class="ai">*</b><div style="flex:1"><div class="al">Catalyst</div><div class="at">Q4 earnings showing continued rate improvements</div><div class="xbtn" onclick="xd(this)">+ catalyst detail</div><div class="xbox" style="display:none">The next catalyst is Q4 earnings expected to show continued improvement in tanker day rates and utilization as energy trade flows normalize. Strong quarterly results could attract institutional attention to the underowned story, driving the stock toward $65-70 range. Watch for commentary on fleet utilization, contract coverage, and management's outlook on shipping cycle sustainability.</div></div></div>
+   </div>
+   <div class="prr"><span class="prl">Price target range:</span><span class="prlo">+60%</span><span class="prsp">to</span><span class="prhi">+75%</span><span class="prmi">mid: +40%</span></div>
+  <div class="convrow">
+    <span class="convlbl">Conviction</span>
+    <div class="convbar"><div style="width:80%;background:#16a34a;height:100%;border-radius:3px"></div></div>
+    <span class="convnum">8/10</span>
+  </div>
+</div>
+<div class="card" data-verdict="BUY" data-models="claude">
+  <div class="model-badge-row"><span class="mbadge mclaude">&#9632; Claude pick</span></div>
+  <div class="ch">
+    <div class="cl">
+      <div class="rn">#4</div>
+      <div><div class="tn">FSLY</div><div class="tl">Edge Computing/CDN Recovery</div></div>
+    </div>
+    <div class="cr">
+      <span class="vc" style="color:#2563eb;background:#2563eb18;border:1.5px solid #2563eb40">BUY</span>
+      <div class="ul" style="color:#16a34a">+35% target</div>
+    </div>
+  </div>
+  <div class="mg">
+    <div class="mb"><div class="ml">N-Value</div><div class="mv" style="color:#d97706">8,186</div><div class="nb"><div style="width:100%;background:#d97706;height:100%;border-radius:2px"></div></div></div>
+    <div class="mb"><div class="ml">Lwowski</div><div class="mv" style="color:#7c3aed">53,779</div></div>
+    <div class="mb"><div class="ml">Tests</div><div class="mv" style="color:#16a34a">10/11</div></div>
+    <div class="mb"><div class="ml">RS</div><div class="mv" style="color:#2563eb">88</div></div>
+    <div class="mb"><div class="ml">EPS%</div><div class="mv" style="color:#16a34a">+56.0%</div></div>
+    <div class="mb"><div class="ml">Sales%</div><div class="mv" style="color:#16a34a">+23.0%</div></div>
+    <div class="mb"><div class="ml">Inst Own</div><div class="mv" style="color:#7c3aed">76.0%</div></div>
+    <div class="mb"><div class="ml">Price</div><div class="mv">$28.59</div></div>
+    <div class="mb"><div class="ml">52w High</div><div class="mv">$30.00</div></div>
+    <div class="mb"><div class="ml">52w Low</div><div class="mv">$5.00</div></div>
+    <div class="mb"><div class="ml">vs 52wH</div><div class="mv" style="color:#dc2626">95%</div></div>
+    <div class="mb"><div class="ml">Volume</div><div class="mv">9.8M</div></div>
+  </div>
+  <div class="rs"><div class="rt">CANSLIM Rules</div><div class="rp"><span class="pill-pass">SMA50>150</span><span class="pill-pass">SMA150>200</span><span class="pill-pass">52wkSpan</span><span class="pill-pass">RS</span><span class="pill-pass">Liquidity</span><span class="pill-pass">Near52wH</span><span class="pill-pass">PrevClose</span><span class="pill-pass">SMA200up</span><span class="pill-pass">InstOwn</span><span class="pill-pass">>SMA50</span><span class="pill-fail">Sales</span><span class="pill-pass">EPS</span></div></div>
+   <div class="ag">
+     <div class="ab bull"><b class="ai">+</b><div style="flex:1"><div class="al">Bull Case</div><div class="at">Fastly is executing a successful turnaround with 56% EPS growth and 23% sales growth while showing strong momentum characteristics with an 88 RS rating. The stock has moved from $5 lows to $28.59, representing a 470% gain that's attracting institutional attention with 76% ownership and massive 9.8M volume. Trading 156% above its 200-day moving average shows powerful momentum, while the edge computing and AI inference trends provide long-term growth drivers. Fastly's content delivery network and edge computing platform are becoming increasingly critical as companies need low-latency data processing for AI applications. The company's focus on developers and modern applications positions it well for the next wave of internet infrastructure growth.</div><div class="xbtn" onclick="xd(this)">+ full fundamental analysis</div><div class="xbox" style="display:none">No additional detail available.</div></div></div>
+     <div class="ab" style="background:#13102a;border-color:#ddd6fe"><b class="ai" style="color:#7c3aed">~</b><div style="flex:1"><div class="al" style="color:#7c3aed">Technical Analysis</div><div class="xbtn" onclick="xd(this)">+ view chart analysis</div><div class="xbox" style="display:none">FSLY shows explosive momentum trading 156% above its 200-day moving average with high 88 RS rating indicating broad market recognition of the turnaround story. Massive 9.8M volume confirms institutional participation and retail interest in the recovery. At $28.59, the stock is 5% below its $30 52-week high, showing it's leading the market and breaking out to new highs. The 470% move from $5 lows demonstrates this is a legitimate momentum leader with continued institutional accumulation supporting the advance.</div></div></div>
+     <div class="ab bear"><b class="ai">-</b><div style="flex:1"><div class="al">Key Risk</div><div class="at">Competitive CDN market and potential customer churn in a economic slowdown.</div><div class="xbtn" onclick="xd(this)">+ full risk analysis</div><div class="xbox" style="display:none">The biggest risk is intense competition from larger players like AWS CloudFront and Microsoft Azure CDN who can bundle services and offer aggressive pricing. Economic slowdowns could pressure customer spending on CDN services and cause churn among smaller customers. The stock has already run 470% from lows, making it vulnerable to profit-taking on any execution stumbles. Fastly's customer concentration and exposure to growth companies also creates risk if the broader tech sector slows spending.</div></div></div>
+     <div class="ab cat"><b class="ai">*</b><div style="flex:1"><div class="al">Catalyst</div><div class="at">Q4 earnings demonstrating sustained growth acceleration</div><div class="xbtn" onclick="xd(this)">+ catalyst detail</div><div class="xbox" style="display:none">The key catalyst is Q4 earnings in February showing continued customer growth and expanding margins as the turnaround gains traction. Strong results could drive the stock toward $38-40 as institutions increase position sizes. Watch for commentary on enterprise customer wins, AI/edge computing demand, and progress on profitability improvements.</div></div></div>
+   </div>
+   <div class="prr"><span class="prl">Price target range:</span><span class="prlo">+35%</span><span class="prsp">to</span><span class="prhi">+42%</span><span class="prmi">mid: +35%</span></div>
+  <div class="convrow">
+    <span class="convlbl">Conviction</span>
+    <div class="convbar"><div style="width:70%;background:#2563eb;height:100%;border-radius:3px"></div></div>
+    <span class="convnum">7/10</span>
+  </div>
+</div>
+<div class="card" data-verdict="STRONG BUY" data-models="gemini">
+  <div class="model-badge-row"><span class="mbadge mgemini">&#9670; Gemini pick</span></div>
+  <div class="ch">
+    <div class="cl">
+      <div class="rn">#5</div>
+      <div><div class="tn">FN</div><div class="tl">AI Optical Infrastructure</div></div>
+    </div>
+    <div class="cr">
+      <span class="vc" style="color:#16a34a;background:#16a34a18;border:1.5px solid #16a34a40">STRONG BUY</span>
+      <div class="ul" style="color:#16a34a">+80% target</div>
+    </div>
+  </div>
+  <div class="mg">
+    <div class="mb"><div class="ml">N-Value</div><div class="mv" style="color:#d97706">8,190</div><div class="nb"><div style="width:100%;background:#d97706;height:100%;border-radius:2px"></div></div></div>
+    <div class="mb"><div class="ml">Lwowski</div><div class="mv" style="color:#7c3aed">14,335</div></div>
+    <div class="mb"><div class="ml">Tests</div><div class="mv" style="color:#16a34a">11/11</div></div>
+    <div class="mb"><div class="ml">RS</div><div class="mv" style="color:#2563eb">17</div></div>
+    <div class="mb"><div class="ml">EPS%</div><div class="mv" style="color:#16a34a">+31.0%</div></div>
+    <div class="mb"><div class="ml">Sales%</div><div class="mv" style="color:#16a34a">+36.0%</div></div>
+    <div class="mb"><div class="ml">Inst Own</div><div class="mv" style="color:#7c3aed">109.0%</div></div>
+    <div class="mb"><div class="ml">Price</div><div class="mv">$549.70</div></div>
+    <div class="mb"><div class="ml">52w High</div><div class="mv">$616.00</div></div>
+    <div class="mb"><div class="ml">52w Low</div><div class="mv">$171.03</div></div>
+    <div class="mb"><div class="ml">vs 52wH</div><div class="mv" style="color:#dc2626">89%</div></div>
+    <div class="mb"><div class="ml">Volume</div><div class="mv">0.5M</div></div>
+  </div>
+  <div class="rs"><div class="rt">CANSLIM Rules</div><div class="rp"><span class="pill-pass">SMA50>150</span><span class="pill-pass">SMA150>200</span><span class="pill-pass">52wkSpan</span><span class="pill-pass">RS</span><span class="pill-pass">Liquidity</span><span class="pill-pass">Near52wH</span><span class="pill-pass">PrevClose</span><span class="pill-pass">SMA200up</span><span class="pill-pass">InstOwn</span><span class="pill-pass">>SMA50</span><span class="pill-pass">Sales</span><span class="pill-pass">EPS</span></div></div>
+   <div class="ag">
+     <div class="ab bull"><b class="ai">+</b><div style="flex:1"><div class="al">Bull Case</div><div class="at">Fabrinet is a pure-play advanced manufacturing partner for cutting-edge AI optical transceivers. Heavy institutional accumulation and accelerating sales make this a top-tier infrastructure pick.</div><div class="xbtn" onclick="xd(this)">+ full fundamental analysis</div><div class="xbox" style="display:none">Fabrinet has emerged as a premier manufacturer of advanced optical packaging, fundamentally tied to surging AI networking demand. With EPS growing at an impressive 31.0% and sales accelerating by 36.0%, the fundamental trajectory is incredibly robust and satisfies strict CANSLIM criteria. Institutional ownership sits at an overwhelming 109.0%, indicating relentless accumulation by smart money and mutual funds that see the long-term vision. As data centers aggressively upgrade to 800G and 1.6T transceivers to support next-generation Nvidia GPUs, Fabrinet's total addressable market is expanding exponentially. This provides undeniable multi-bagger potential over a 1-2 year horizon as the AI hardware build-out remains in its early innings.</div></div></div>
+     <div class="ab" style="background:#13102a;border-color:#ddd6fe"><b class="ai" style="color:#7c3aed">~</b><div style="flex:1"><div class="al" style="color:#7c3aed">Technical Analysis</div><div class="xbtn" onclick="xd(this)">+ view chart analysis</div><div class="xbox" style="display:none">The technical setup for Fabrinet reveals a coiled spring with an artificially low Relative Strength rating of 17, making it a classic under-discovered CANSLIM gem. Trading at $549.70, it sits comfortably above its 200-day moving average by 34.0%, confirming a powerful long-term primary uptrend. The stock remains within striking distance of its 52-week high of $616.00, digesting recent gains on lighter volume to form a constructive base. Volume trends during up weeks suggest institutional support is effectively placing a firm floor under the current price consolidation structure.</div></div></div>
+     <div class="ab bear"><b class="ai">-</b><div style="flex:1"><div class="al">Key Risk</div><div class="at">Customer concentration and potential deceleration in optical networking capex.</div><div class="xbtn" onclick="xd(this)">+ full risk analysis</div><div class="xbox" style="display:none">The primary risk revolves around heavy customer concentration, particularly reliance on a few major networking and AI hardware vendors. If AI hardware spending slows or transitions away from Fabrinet's specific optical packaging solutions, revenue growth could stall abruptly and trigger a multiple compression. High institutional ownership also poses a liquidation risk; if a major fund decides to exit the trade, the downside pressure could be severe. Furthermore, broader macroeconomic headwinds or supply chain disruptions in the semiconductor space could heavily impact their margin targets. Investors must closely monitor quarterly capex guidance from major hyper-scalers to gauge forward demand.</div></div></div>
+     <div class="ab cat"><b class="ai">*</b><div style="flex:1"><div class="al">Catalyst</div><div class="at">Next quarter's 800G/1.6T transceiver shipment guidance.</div><div class="xbtn" onclick="xd(this)">+ catalyst detail</div><div class="xbox" style="display:none">The next major catalyst is the upcoming quarterly earnings report, which will provide crucial visibility into 800G and 1.6T transceiver demand. We expect hyper-scaler capex announcements to serve as a secondary catalyst, directly impacting forward revenue guidance. Investors should closely watch for any upside revisions to operating margins as production scales to higher volumes.</div></div></div>
+   </div>
+   <div class="prr"><span class="prl">Price target range:</span><span class="prlo">+480%</span><span class="prsp">to</span><span class="prhi">+990%</span><span class="prmi">mid: +80%</span></div>
+  <div class="convrow">
+    <span class="convlbl">Conviction</span>
+    <div class="convbar"><div style="width:90%;background:#16a34a;height:100%;border-radius:3px"></div></div>
+    <span class="convnum">9/10</span>
+  </div>
+</div>
+<div class="card" data-verdict="STRONG BUY" data-models="gemini">
+  <div class="model-badge-row"><span class="mbadge mgemini">&#9670; Gemini pick</span></div>
+  <div class="ch">
+    <div class="cl">
+      <div class="rn">#6</div>
+      <div><div class="tn">FIX</div><div class="tl">Data Center HVAC/Cooling</div></div>
+    </div>
+    <div class="cr">
+      <span class="vc" style="color:#16a34a;background:#16a34a18;border:1.5px solid #16a34a40">STRONG BUY</span>
+      <div class="ul" style="color:#16a34a">+75% target</div>
+    </div>
+  </div>
+  <div class="mg">
+    <div class="mb"><div class="ml">N-Value</div><div class="mv" style="color:#d97706">8,182</div><div class="nb"><div style="width:100%;background:#d97706;height:100%;border-radius:2px"></div></div></div>
+    <div class="mb"><div class="ml">Lwowski</div><div class="mv" style="color:#7c3aed">16,203</div></div>
+    <div class="mb"><div class="ml">Tests</div><div class="mv" style="color:#16a34a">10/11</div></div>
+    <div class="mb"><div class="ml">RS</div><div class="mv" style="color:#2563eb">18</div></div>
+    <div class="mb"><div class="ml">EPS%</div><div class="mv" style="color:#16a34a">+129.0%</div></div>
+    <div class="mb"><div class="ml">Sales%</div><div class="mv" style="color:#16a34a">+42.0%</div></div>
+    <div class="mb"><div class="ml">Inst Own</div><div class="mv" style="color:#7c3aed">95.0%</div></div>
+    <div class="mb"><div class="ml">Price</div><div class="mv">$1358.66</div></div>
+    <div class="mb"><div class="ml">52w High</div><div class="mv">$1471.00</div></div>
+    <div class="mb"><div class="ml">52w Low</div><div class="mv">$295.68</div></div>
+    <div class="mb"><div class="ml">vs 52wH</div><div class="mv" style="color:#dc2626">92%</div></div>
+    <div class="mb"><div class="ml">Volume</div><div class="mv">0.3M</div></div>
+  </div>
+  <div class="rs"><div class="rt">CANSLIM Rules</div><div class="rp"><span class="pill-pass">SMA50>150</span><span class="pill-pass">SMA150>200</span><span class="pill-pass">52wkSpan</span><span class="pill-pass">RS</span><span class="pill-pass">Liquidity</span><span class="pill-pass">Near52wH</span><span class="pill-pass">PrevClose</span><span class="pill-pass">SMA200up</span><span class="pill-pass">InstOwn</span><span class="pill-fail">>SMA50</span><span class="pill-pass">Sales</span><span class="pill-pass">EPS</span></div></div>
+   <div class="ag">
+     <div class="ab bull"><b class="ai">+</b><div style="flex:1"><div class="al">Bull Case</div><div class="at">FIX is a highly profitable 'picks and shovels' play on data center liquid cooling and HVAC. Explosive EPS growth and tight institutional holding point to massive upside.</div><div class="xbtn" onclick="xd(this)">+ full fundamental analysis</div><div class="xbox" style="display:none">Comfort Systems USA is perfectly positioned as a foundational 'picks and shovels' play for the booming data center and AI infrastructure sectors. Boasting an explosive EPS growth of 129.0% and a 42.0% surge in top-line sales, the fundamental acceleration easily satisfies the most stringent CANSLIM requirements. Institutional ownership is exceptionally strong at 95.0%, validating the long-term thesis among sophisticated money managers who understand the infrastructure bottlenecks. The absolute necessity for advanced HVAC and liquid cooling solutions in high-density AI data centers expands their TAM by tens of billions of dollars. Given their flawless execution history and rapidly expanding backlog, the stock possesses significant multi-bagger upside over the next twenty-four months.</div></div></div>
+     <div class="ab" style="background:#13102a;border-color:#ddd6fe"><b class="ai" style="color:#7c3aed">~</b><div style="flex:1"><div class="al" style="color:#7c3aed">Technical Analysis</div><div class="xbtn" onclick="xd(this)">+ view chart analysis</div><div class="xbox" style="display:none">FIX is demonstrating textbook CANSLIM technical action, currently trading at $1358.66 and maintaining a 49.0% premium over its 200-day simple moving average. Despite the massive fundamental growth, its RS rating is uniquely subdued at 18, keeping it hidden from momentum-chasing retail crowds. The stock is consolidating nicely below its 52-week high of $1471.00, forming a high-tight flag or mature base structure on the weekly chart. Volume contraction during recent pullbacks signals a distinct lack of institutional distribution, paving the way for an imminent breakout.</div></div></div>
+     <div class="ab bear"><b class="ai">-</b><div style="flex:1"><div class="al">Key Risk</div><div class="at">Cyclical downturns in commercial construction and delays in enterprise data center projects.</div><div class="xbtn" onclick="xd(this)">+ full risk analysis</div><div class="xbox" style="display:none">The most significant risk is the cyclical nature of commercial construction and potential delays in large-scale data center projects due to power constraints. A macroeconomic recession could freeze general commercial real estate spending, severely impacting the company's backlog and revenue visibility. The stock's high nominal share price and elevated valuation multiples leave little room for execution missteps or margin compression. Additionally, chronic labor shortages in skilled mechanical trades could pressure operating margins and delay critical project timelines. Continued monitoring of their book-to-bill ratio and backlog conversion speed is absolutely essential.</div></div></div>
+     <div class="ab cat"><b class="ai">*</b><div style="flex:1"><div class="al">Catalyst</div><div class="at">New large-scale data center contract announcements.</div><div class="xbtn" onclick="xd(this)">+ catalyst detail</div><div class="xbox" style="display:none">The primary catalyst is the expected announcement of new, large-scale data center cooling contracts from major tech hyperscalers. The upcoming earnings release will also shed light on their backlog growth and pricing power in the specialized HVAC segment. Watching the adoption rate of specialized liquid cooling systems will be critical for assessing forward margin expansion.</div></div></div>
+   </div>
+   <div class="prr"><span class="prl">Price target range:</span><span class="prlo">+1150%</span><span class="prsp">to</span><span class="prhi">+2350%</span><span class="prmi">mid: +75%</span></div>
+  <div class="convrow">
+    <span class="convlbl">Conviction</span>
+    <div class="convbar"><div style="width:90%;background:#16a34a;height:100%;border-radius:3px"></div></div>
+    <span class="convnum">9/10</span>
+  </div>
+</div>
+<div class="card" data-verdict="BUY" data-models="gemini">
+  <div class="model-badge-row"><span class="mbadge mgemini">&#9670; Gemini pick</span></div>
+  <div class="ch">
+    <div class="cl">
+      <div class="rn">#7</div>
+      <div><div class="tn">BWXT</div><div class="tl">Nuclear Energy Infrastructure</div></div>
+    </div>
+    <div class="cr">
+      <span class="vc" style="color:#2563eb;background:#2563eb18;border:1.5px solid #2563eb40">BUY</span>
+      <div class="ul" style="color:#16a34a">+65% target</div>
+    </div>
+  </div>
+  <div class="mg">
+    <div class="mb"><div class="ml">N-Value</div><div class="mv" style="color:#d97706">8,186</div><div class="nb"><div style="width:100%;background:#d97706;height:100%;border-radius:2px"></div></div></div>
+    <div class="mb"><div class="ml">Lwowski</div><div class="mv" style="color:#7c3aed">8,704</div></div>
+    <div class="mb"><div class="ml">Tests</div><div class="mv" style="color:#16a34a">10/11</div></div>
+    <div class="mb"><div class="ml">RS</div><div class="mv" style="color:#2563eb">8</div></div>
+    <div class="mb"><div class="ml">EPS%</div><div class="mv" style="color:#16a34a">+31.0%</div></div>
+    <div class="mb"><div class="ml">Sales%</div><div class="mv" style="color:#16a34a">+19.0%</div></div>
+    <div class="mb"><div class="ml">Inst Own</div><div class="mv" style="color:#7c3aed">93.0%</div></div>
+    <div class="mb"><div class="ml">Price</div><div class="mv">$205.09</div></div>
+    <div class="mb"><div class="ml">52w High</div><div class="mv">$222.00</div></div>
+    <div class="mb"><div class="ml">52w Low</div><div class="mv">$88.66</div></div>
+    <div class="mb"><div class="ml">vs 52wH</div><div class="mv" style="color:#dc2626">92%</div></div>
+    <div class="mb"><div class="ml">Volume</div><div class="mv">0.9M</div></div>
+  </div>
+  <div class="rs"><div class="rt">CANSLIM Rules</div><div class="rp"><span class="pill-pass">SMA50>150</span><span class="pill-pass">SMA150>200</span><span class="pill-pass">52wkSpan</span><span class="pill-pass">RS</span><span class="pill-pass">Liquidity</span><span class="pill-pass">Near52wH</span><span class="pill-pass">PrevClose</span><span class="pill-pass">SMA200up</span><span class="pill-pass">InstOwn</span><span class="pill-pass">>SMA50</span><span class="pill-fail">Sales</span><span class="pill-pass">EPS</span></div></div>
+   <div class="ag">
+     <div class="ab bull"><b class="ai">+</b><div style="flex:1"><div class="al">Bull Case</div><div class="at">BWXT is a stealthy AI power-play leveraging next-gen nuclear technology to solve data center energy constraints. Steadily growing earnings and massive institutional ownership anchor the stock.</div><div class="xbtn" onclick="xd(this)">+ full fundamental analysis</div><div class="xbox" style="display:none">BWX Technologies represents an elite, backdoor play on the AI infrastructure boom through the critical lens of next-generation nuclear power generation. The company has demonstrated consistent fundamental strength, highlighted by a solid 31.0% increase in EPS and a 19.0% growth in top-line sales. Institutional investors firmly control the float with a massive 93.0% ownership, creating a tight supply-side dynamic that pushes prices higher on good news. As hyperscalers desperately seek clean, baseload power for massive AI data centers, small modular reactors (SMRs) provide a multi-decade growth runway. The combination of locked-in defense contracts and commercial nuclear expansion offers significant, risk-adjusted multi-bagger potential.</div></div></div>
+     <div class="ab" style="background:#13102a;border-color:#ddd6fe"><b class="ai" style="color:#7c3aed">~</b><div style="flex:1"><div class="al" style="color:#7c3aed">Technical Analysis</div><div class="xbtn" onclick="xd(this)">+ view chart analysis</div><div class="xbox" style="display:none">Trading at $205.09, BWXT exhibits extremely quiet but relentless technical accumulation, perfectly fitting the CANSLIM model. It sits gently above its 200-day moving average by 12.0%, reflecting a steady, low-volatility, and highly sustainable uptrend. The exceedingly low RS rating of 8 confirms this name is entirely off the radar of retail momentum traders, despite its outstanding underlying fundamentals. The stock is currently forming a constructive, flat base just shy of its $222.00 high, with volume drying up perfectly during the consolidation phase.</div></div></div>
+     <div class="ab bear"><b class="ai">-</b><div style="flex:1"><div class="al">Key Risk</div><div class="at">Regulatory hurdles and delays in Small Modular Reactor (SMR) commercialization.</div><div class="xbtn" onclick="xd(this)">+ full risk analysis</div><div class="xbox" style="display:none">The primary risk to the thesis is the heavily regulated nature of the global nuclear industry, which routinely results in severe project delays and massive cost overruns. A failure to secure necessary government and environmental approvals for commercial SMR deployments would stall the anticipated high-margin commercial growth segment. The company is also highly reliant on US Navy contracts; any shifts in naval spending priorities or federal budgets could negatively impact their core revenue stream. Finally, the slow-moving nature of utility-scale energy infrastructure projects may severely test the patience of growth-oriented investors. Observing the progress of regulatory approvals and deployment timelines is paramount.</div></div></div>
+     <div class="ab cat"><b class="ai">*</b><div style="flex:1"><div class="al">Catalyst</div><div class="at">Commercial partnerships for data center SMR deployment.</div><div class="xbtn" onclick="xd(this)">+ catalyst detail</div><div class="xbox" style="display:none">The next tangible catalyst is regulatory progress and the announcement of commercial partnerships regarding SMRs for dedicated data center power. Earnings reports will also feature critical updates on long-term Department of Defense and Naval reactor manufacturing contracts. Investors should closely watch for news involving major utility companies or tech hyperscalers securing dedicated nuclear power agreements with BWXT.</div></div></div>
+   </div>
+   <div class="prr"><span class="prl">Price target range:</span><span class="prlo">+160%</span><span class="prsp">to</span><span class="prhi">+340%</span><span class="prmi">mid: +65%</span></div>
+  <div class="convrow">
+    <span class="convlbl">Conviction</span>
+    <div class="convbar"><div style="width:80%;background:#16a34a;height:100%;border-radius:3px"></div></div>
+    <span class="convnum">8/10</span>
+  </div>
+</div>
+<div class="card" data-verdict="BUY" data-models="gemini">
+  <div class="model-badge-row"><span class="mbadge mgemini">&#9670; Gemini pick</span></div>
+  <div class="ch">
+    <div class="cl">
+      <div class="rn">#8</div>
+      <div><div class="tn">MTZ</div><div class="tl">Grid & Telecom Infrastructure</div></div>
+    </div>
+    <div class="cr">
+      <span class="vc" style="color:#2563eb;background:#2563eb18;border:1.5px solid #2563eb40">BUY</span>
+      <div class="ul" style="color:#16a34a">+70% target</div>
+    </div>
+  </div>
+  <div class="mg">
+    <div class="mb"><div class="ml">N-Value</div><div class="mv" style="color:#d97706">8,186</div><div class="nb"><div style="width:100%;background:#d97706;height:100%;border-radius:2px"></div></div></div>
+    <div class="mb"><div class="ml">Lwowski</div><div class="mv" style="color:#7c3aed">19,905</div></div>
+    <div class="mb"><div class="ml">Tests</div><div class="mv" style="color:#16a34a">10/11</div></div>
+    <div class="mb"><div class="ml">RS</div><div class="mv" style="color:#2563eb">28</div></div>
+    <div class="mb"><div class="ml">EPS%</div><div class="mv" style="color:#16a34a">+92.0%</div></div>
+    <div class="mb"><div class="ml">Sales%</div><div class="mv" style="color:#16a34a">+16.0%</div></div>
+    <div class="mb"><div class="ml">Inst Own</div><div class="mv" style="color:#7c3aed">75.0%</div></div>
+    <div class="mb"><div class="ml">Price</div><div class="mv">$306.74</div></div>
+    <div class="mb"><div class="ml">52w High</div><div class="mv">$324.00</div></div>
+    <div class="mb"><div class="ml">52w Low</div><div class="mv">$106.07</div></div>
+    <div class="mb"><div class="ml">vs 52wH</div><div class="mv" style="color:#dc2626">95%</div></div>
+    <div class="mb"><div class="ml">Volume</div><div class="mv">1.1M</div></div>
+  </div>
+  <div class="rs"><div class="rt">CANSLIM Rules</div><div class="rp"><span class="pill-pass">SMA50>150</span><span class="pill-pass">SMA150>200</span><span class="pill-pass">52wkSpan</span><span class="pill-pass">RS</span><span class="pill-pass">Liquidity</span><span class="pill-pass">Near52wH</span><span class="pill-pass">PrevClose</span><span class="pill-pass">SMA200up</span><span class="pill-pass">InstOwn</span><span class="pill-pass">>SMA50</span><span class="pill-fail">Sales</span><span class="pill-pass">EPS</span></div></div>
+   <div class="ag">
+     <div class="ab bull"><b class="ai">+</b><div style="flex:1"><div class="al">Bull Case</div><div class="at">MasTec is primed to capitalize on the multi-billion dollar US infrastructure upgrade cycle. Accelerating earnings and a massive project backlog provide clear visibility for multi-year growth.</div><div class="xbtn" onclick="xd(this)">+ full fundamental analysis</div><div class="xbox" style="display:none">MasTec is situated at the absolute epicenter of the US infrastructure supercycle, directly benefiting from grid modernization and telecom upgrades necessitated by AI expansion. EPS growth is currently explosive at 92.0%, paired with a very respectable 16.0% increase in top-line sales, showing excellent operational leverage. Institutional sponsorship is highly supportive at 75.0%, providing a stable foundation for future price appreciation. The total addressable market is vast, driven by billions in federal infrastructure spending, clean energy deployment, and private telecom capex. With a relatively small market cap compared to its rapidly expanding backlog, MTZ is primed to be a multi-bagger over the next 24 months.</div></div></div>
+     <div class="ab" style="background:#13102a;border-color:#ddd6fe"><b class="ai" style="color:#7c3aed">~</b><div style="flex:1"><div class="al" style="color:#7c3aed">Technical Analysis</div><div class="xbtn" onclick="xd(this)">+ view chart analysis</div><div class="xbox" style="display:none">MTZ shows excellent technical posture, trading at $306.74 and sitting a robust 46.0% above its 200-day moving average. An RS rating of 28 makes it a hidden gem, consolidating quietly while the broader market remains hyper-focused on mega-cap tech stocks. The stock is currently digesting a powerful cyclical run from its 52-week low of $106.07, forming a high-handle structure just below the $324.00 peak. Volume patterns show distinct institutional accumulation during advancing weeks, with the 50-day moving average currently providing strong dynamic support.</div></div></div>
+     <div class="ab bear"><b class="ai">-</b><div style="flex:1"><div class="al">Key Risk</div><div class="at">Project execution missteps and fixed-price contract inflation risks.</div><div class="xbtn" onclick="xd(this)">+ full risk analysis</div><div class="xbox" style="display:none">The greatest risk to MasTec is project execution failure and the severe impact of inflation on fixed-price legacy contracts. If labor costs and raw material prices surge unexpectedly, MasTec's margins could be significantly compressed before contract adjustments or price escalators can take effect. The company also carries a notable debt load from previous acquisitions, making it fundamentally sensitive to a higher-for-longer interest rate environment. Delays in federal infrastructure funding rollouts could lead to disappointing revenue guidance in the near term. Close scrutiny of operating margins, backlog duration, and cash flow from operations is required each quarter.</div></div></div>
+     <div class="ab cat"><b class="ai">*</b><div style="flex:1"><div class="al">Catalyst</div><div class="at">Updates on federal infrastructure funding deployment and telecom capex.</div><div class="xbtn" onclick="xd(this)">+ catalyst detail</div><div class="xbox" style="display:none">The upcoming infrastructure project backlog numbers released during the next earnings call will act as a major near-term catalyst. Announcements of new, large-scale clean energy or transmission line contracts will further validate the ongoing growth narrative. Investors should keep a close eye on federal funding deployment schedules and utility capex announcements, which directly impact MTZ's recognized revenue.</div></div></div>
+   </div>
+   <div class="prr"><span class="prl">Price target range:</span><span class="prlo">+240%</span><span class="prsp">to</span><span class="prhi">+520%</span><span class="prmi">mid: +70%</span></div>
+  <div class="convrow">
+    <span class="convlbl">Conviction</span>
+    <div class="convbar"><div style="width:70%;background:#2563eb;height:100%;border-radius:3px"></div></div>
+    <span class="convnum">7/10</span>
+  </div>
+</div></div>
+<div class="foot">
+  Data: <a href="http://www.canslimscreener.com/" target="_blank">canslimscreener.com</a>
+  &middot; Claude claude-sonnet-4-20250514 &middot; Gemini 3 Pro &middot; Not financial advice.
+</div>
+<script>
+function xd(btn){const b=btn.nextElementSibling;if(b.style.display==="none"){b.style.display="block";btn.textContent=btn.textContent.replace("+ ","- ");}else{b.style.display="none";btn.textContent=btn.textContent.replace("- ","+ ");}}
+function f(m,btn){
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.card').forEach(c=>{
+    c.style.display=m==='all'?'':c.dataset.models===m?'':'none';
+  });
+}
+function fv(v,btn){
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.card').forEach(c=>{
+    c.style.display=c.dataset.verdict===v?'':'none';
+  });
+}
+</script>
+</body>
+</html>
