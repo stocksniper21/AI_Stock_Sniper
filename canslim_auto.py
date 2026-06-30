@@ -169,7 +169,7 @@ def analyze_claude(stocks):
     t0 = time.time()
     msg = client.messages.create(
         model="claude-sonnet-4-6",
-        max_tokens=8192,
+        max_tokens=16000,
         messages=[{"role":"user","content":build_prompt(stocks)}]
     )
     print(f"  Claude done in {time.time()-t0:.1f}s")
