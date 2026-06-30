@@ -168,7 +168,7 @@ def analyze_claude(stocks):
     print(f"  Sending {len(stocks)} stocks to Claude...")
     t0 = time.time()
     msg = client.messages.create(
-        model="claude-sonnet-4-20250514",
+        model="claude-sonnet-4-6",
         max_tokens=4096,
         messages=[{"role":"user","content":build_prompt(stocks)}]
     )
@@ -497,7 +497,7 @@ body{background:#080d1a;color:#e2e8f0;font-family:'Outfit',sans-serif}
 <div class="grid" id="grid">{cards}</div>
 <div class="foot">
   Data: <a href="http://www.canslimscreener.com/" target="_blank">canslimscreener.com</a>
-  &middot; Claude claude-sonnet-4-20250514 &middot; Gemini 3 Pro &middot; Not financial advice.
+  &middot; Claude claude-sonnet-4-6 &middot; Gemini 3 Pro &middot; Not financial advice.
 </div>
 <script>
 function xd(btn){{const b=btn.nextElementSibling;if(b.style.display==="none"){{b.style.display="block";btn.textContent=btn.textContent.replace("+ ","- ");}}else{{b.style.display="none";btn.textContent=btn.textContent.replace("- ","+ ");}}}}
