@@ -19,7 +19,7 @@ async def scrape():
         browser = await pw.chromium.launch(headless=True, args=["--no-sandbox","--disable-dev-shm-usage"])
         page = await browser.new_page(user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36")
         print(f"Opening {SCREENER_URL} ...")
-        await page.goto(SCREENER_URL, wait_until="networkidle", timeout=90_000)
+        await page.goto(SCREENER_URL, wait_until="domcontentloaded", timeout=120_000)
         await page.wait_for_timeout(4_000)
         print("Setting page size to 50...")
         try:
@@ -169,7 +169,7 @@ def analyze_claude(stocks):
     t0 = time.time()
     msg = client.messages.create(
         model="claude-sonnet-4-6",
-        max_tokens=4096,
+        max_tokens=8192,
         messages=[{"role":"user","content":build_prompt(stocks)}]
     )
     print(f"  Claude done in {time.time()-t0:.1f}s")
